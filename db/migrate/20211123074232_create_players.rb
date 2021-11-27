@@ -1,10 +1,11 @@
 class CreatePlayers < ActiveRecord::Migration[6.1]
   def change
     create_table :players do |t|
-      t.string :name
-      t.string :name_kana
+      t.string :name, null: false
+      t.string :name_kana, null: false
+      t.string :name_en, null: false
       t.references :team
-      t.string :country
+      t.integer :country
       t.integer :position
       t.date :birthday
       t.integer :height

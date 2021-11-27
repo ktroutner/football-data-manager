@@ -1,4 +1,4 @@
 class SeasonMember < ApplicationRecord
-    has_one :season
-    has_one :team
+    belongs_to :season
+    belongs_to :team
 end
