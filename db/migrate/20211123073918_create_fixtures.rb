@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Create fixtures table
 class CreateFixtures < ActiveRecord::Migration[6.1]
   def change
     create_table :fixtures do |t|
@@ -8,5 +11,5 @@ class CreateFixtures < ActiveRecord::Migration[6.1]
     end
   end
 
-  add_index :fixtures, [:season_id, :number], unique: true
+  add_index :fixtures, %i[season_id number], unique: true
 end

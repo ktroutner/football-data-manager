@@ -1,0 +1,16 @@
+require: rubocop-rails
+
+AllCops:
+  NewCops: enable
+
+Style/EmptyMethod:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/**/*.rb'
+    - 'scripts/**/*.rb'
+
+Naming/VariableNumber:
+  Exclude:
+    - 'scripts/**/*.rb' # Scripts often use variables like j1, j2, etc.
