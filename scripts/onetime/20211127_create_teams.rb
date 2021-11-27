@@ -3,7 +3,7 @@
 require 'csv'
 
 # チーム名,チーム名（略）,チーム名（ローマ字）,チーム名（ローマ字、略）,都道府県
-data = <<~EOS
+data = <<~CSV_TEXT
   北海道コンサドーレ札幌,札幌,Hokkaido Consadole Sapporo,CON,1
   ベガルタ仙台,仙台,Vegalta Sendai,VEG,4
   鹿島アントラーズ,鹿島,Kashima Antlers,KAS,8
@@ -24,7 +24,7 @@ data = <<~EOS
   アビスパ福岡,福岡,Avispa Fukuoka,AVI,40
   サガン鳥栖,鳥栖,Sagan Tosu,SAG,41
   大分トリニータ,大分,Oita Trinita,OIT,44
-EOS
+CSV_TEXT
 
 CSV.parse(data) do |row|
   Team.create!(

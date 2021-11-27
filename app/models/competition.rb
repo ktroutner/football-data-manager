@@ -15,5 +15,5 @@
 #  updated_at    :datetime         not null
 #
 class Competition < ApplicationRecord
-  has_many :seasons
+  has_many :seasons, dependent: :destroy
 end

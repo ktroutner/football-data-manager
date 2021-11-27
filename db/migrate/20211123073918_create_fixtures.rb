@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Create fixtures table
 class CreateFixtures < ActiveRecord::Migration[6.1]
   def change
     create_table :fixtures do |t|
