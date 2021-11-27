@@ -25,8 +25,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_074232) do
 
   create_table "fixtures", force: :cascade do |t|
     t.integer "season_id"
-    t.string "name", null: false
-    t.string "name_en", null: false
+    t.integer "number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["season_id"], name: "index_fixtures_on_season_id"
