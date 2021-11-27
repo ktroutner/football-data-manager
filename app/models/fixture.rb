@@ -19,6 +19,6 @@ class Fixture < ApplicationRecord
   has_many :matches, dependent: :destroy
 
   def name
-    "第#{number}節"
+    I18n.t('activerecord.attributes.fixture.name', number: number)
   end
 end

@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# Internationalization
+gem 'rails-i18n'
+
 # Code format check
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false

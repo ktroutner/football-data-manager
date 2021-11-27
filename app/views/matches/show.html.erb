@@ -1,9 +1,9 @@
-<h1>Match</h1>
+<h1><%= I18n.t('activerecord.models.match') %></h1>
 <p>
     <%= @match.home_team.name %> <%= @match.display_score %> <%= @match.away_team.name %>
 </p>
 <p>
-    <%= @match.kickoff_at.strftime('%Y年%m月%d日（%a）%H:%M') %>
+    <%= I18n.l(@match.kickoff_at, format: :with_day_of_week) %>
 </p>
 <p>
     <%= @match.stadium.name %>

@@ -11,6 +11,10 @@ Metrics/MethodLength:
     - 'db/migrate/**/*.rb'
     - 'scripts/**/*.rb'
 
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/**/*.rb'
+
 Naming/VariableNumber:
   Exclude:
     - 'scripts/**/*.rb' # Scripts often use variables like j1, j2, etc.

@@ -1,0 +1,26 @@
+ja:
+  application:
+    name: FootballDataManager
+    description: サッカー試合のデータ管理ツール
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      long: "%Y年%m月%d日(%a)"
+      short: "%m/%d"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      short: "%y/%m/%d %H:%M"
+      with_day_of_week: "%Y年%m月%d日(%a) %H:%M"
+  activerecord:
+    models:
+      competition: 大会
+      season: シーズン
+      fixture: 節
+      match: 試合
+    attributes:
+      season:
+        name: "%{competition} %{year}シーズン"
+      fixture:
+        name: "第%{number}節"

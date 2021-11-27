@@ -33,6 +33,27 @@ class Team < ApplicationRecord
   has_many :seasons, through: :memberships
   has_many :competitions, through: :seasons
 
+  def name
+    case I18n.locale
+    when :en then read_attribute(:name_en)
+    else read_attribute(:name)
+    end
+  end
+
+  def short_name
+    case I18n.locale
+    when :en then read_attribute(:name_short_en)
+    else read_attribute(:name_short)
+    end
+  end
+
+  def hometown
+    case I18n.locale
+    when :en then read_attribute(:hometown_en)
+    else read_attribute(:hometown)
+    end
+  end
+
   class << self
     def matches
       home_matches.merge(away_matches)

@@ -15,4 +15,18 @@
 #
 class Stadium < ApplicationRecord
   has_many :matches, dependent: :nullify
+
+  def name
+    case I18n.locale
+    when :en then read_attribute(:name_en)
+    else read_attribute(:name)
+    end
+  end
+
+  def short_name
+    case I18n.locale
+    when :en then read_attribute(:name_short_en)
+    else read_attribute(:name_short)
+    end
+  end
 end
