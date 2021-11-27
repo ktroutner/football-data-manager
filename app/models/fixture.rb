@@ -17,4 +17,8 @@
 class Fixture < ApplicationRecord
   belongs_to :season
   has_many :matches, dependent: :destroy
+
+  def name
+    "第#{number}節"
+  end
 end

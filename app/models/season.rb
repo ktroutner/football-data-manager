@@ -19,4 +19,8 @@ class Season < ApplicationRecord
   has_many :members, class_name: 'SeasonMember', dependent: :destroy
   has_many :teams, through: :members
   has_many :fixtures, dependent: :destroy
+
+  def name
+    "#{competition.name} #{year}シーズン"
+  end
 end

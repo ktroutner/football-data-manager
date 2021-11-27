@@ -1,0 +1,11 @@
+<h1>Competitions</h1>
+<ul>
+    <% @competitions.each do |competition| %>
+        <li>
+            <a href="/competitions/<%= competition.id %>">
+            <p>
+                <%= competition.name %>
+            </p>
+        </li>
+    <% end %>
+</ul>

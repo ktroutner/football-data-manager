@@ -1,0 +1,11 @@
+<h1><%= @competition.name %></h1>
+<ul>
+    <% @competition.seasons.order(:year).each do |season| %>
+        <li>
+            <a href="/seasons/<%= season.id %>">
+            <p>
+                <%= season.name %>
+            </p>
+        </li>
+    <% end %>
+</ul>

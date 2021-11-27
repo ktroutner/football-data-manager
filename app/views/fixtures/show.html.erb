@@ -1,0 +1,11 @@
+<h1><%= @fixture.name %></h1>
+<ul>
+    <% @fixture.matches.order(:kickoff_at).each do |match| %>
+        <li>
+            <a href="/matches/<%= match.id %>">
+            <p>
+                <%= match.home_team.name_short %> v. <%= match.away_team.name_short %>
+            </p>
+        </li>
+    <% end %>
+</ul>
