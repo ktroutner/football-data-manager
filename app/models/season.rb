@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Season < ApplicationRecord
-    belongs_to :competition
-    has_many :members, class_name: "SeasonMember"
-    has_many :teams, through: :members
-    has_many :fixtures
+  belongs_to :competition
+  has_many :members, class_name: 'SeasonMember'
+  has_many :teams, through: :members
+  has_many :fixtures
 end
