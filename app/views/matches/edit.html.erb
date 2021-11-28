@@ -1,0 +1,19 @@
+<h1><%= I18n.t('pages.matches.edit.title') %></h1>
+
+<%= form_with model: @match do |form| %>
+    <div>
+        <%= form.label :home_score %>
+        <br/>
+        <%= form.number_field :home_score %>
+    </div>
+
+    <div>
+        <%= form.label :away_score %>
+        <br/>
+        <%= form.number_field :away_score %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

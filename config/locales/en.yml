@@ -2,6 +2,8 @@ en:
   application:
     name: FootballDataManager
     description: Manage and view data on football matches
+  actions:
+      edit: Edit
   date:
     formats:
       default: "%Y/%m/%d"
@@ -24,3 +26,10 @@ en:
         name: "%{competition} %{year} Season"
       fixture:
         name: "Section %{number}"
+      match:
+        home_score: Score (home)
+        away_score: Score (away)
+  pages:
+    matches:
+      edit:
+        title: Edit Match
