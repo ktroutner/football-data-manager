@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_074232) do
+ActiveRecord::Schema.define(version: 2021_11_28_072806) do
 
   create_table "competitions", force: :cascade do |t|
     t.string "name", null: false
@@ -35,18 +35,16 @@ ActiveRecord::Schema.define(version: 2021_11_23_074232) do
     t.integer "fixture_id"
     t.integer "home_team_id"
     t.integer "away_team_id"
-    t.string "stadium", null: false
-    t.string "stadium_en", null: false
-    t.string "stadium_short", null: false
-    t.string "stadium_short_en", null: false
     t.datetime "kickoff_at"
     t.integer "home_score"
     t.integer "away_score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "stadium_id"
     t.index ["away_team_id"], name: "index_matches_on_away_team_id"
     t.index ["fixture_id"], name: "index_matches_on_fixture_id"
     t.index ["home_team_id"], name: "index_matches_on_home_team_id"
+    t.index ["stadium_id"], name: "index_matches_on_stadium_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -81,6 +79,16 @@ ActiveRecord::Schema.define(version: 2021_11_23_074232) do
     t.index ["competition_id"], name: "index_seasons_on_competition_id"
   end
 
+  create_table "stadiums", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_short", null: false
+    t.string "name_short_en", null: false
+    t.integer "prefecture", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "team_colors", force: :cascade do |t|
     t.integer "team_id"
     t.string "name"
@@ -105,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_11_23_074232) do
     t.index ["main_league_id"], name: "index_teams_on_main_league_id"
   end
 
+  add_foreign_key "matches", "stadiums"
   add_foreign_key "matches", "teams", column: "away_team_id"
   add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "teams", "competitions", column: "main_league_id"

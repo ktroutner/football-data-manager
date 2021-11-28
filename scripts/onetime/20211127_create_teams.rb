@@ -2,17 +2,17 @@
 
 require 'csv'
 
-# チーム名,チーム名（略）,チーム名（ローマ字）,チーム名（ローマ字、略）,都道府県
+# Team name,Abbreviation,English team name,English abbrevation,Prefecture
 data = <<~CSV_TEXT
   北海道コンサドーレ札幌,札幌,Hokkaido Consadole Sapporo,CON,1
   ベガルタ仙台,仙台,Vegalta Sendai,VEG,4
   鹿島アントラーズ,鹿島,Kashima Antlers,KAS,8
   浦和レッズ,浦和,Urawa Reds,URA,11
   柏レイソル,柏,Kashiwa Reysol,KAR,12
-  FC東京,FC東京,FC Tokyo,TOK,13
+  FC東京,FC東京,F.C. Tokyo,TOK,13
   川崎フロンターレ,川崎F,Kawasaki Frontale,KAW,14
   横浜F・マリノス,横浜FM,Yokohama F.Marinos,YOK,14
-  横浜FC,横浜FC,YokohamaFC,YFC,14
+  横浜FC,横浜FC,Yokohama FC,YFC,14
   湘南ベルマーレ,湘南,Shonan Bellmare,SHO,14
   清水エスパルス,清水,Shimizu S-Pulse,SHI,22
   名古屋グランパス,名古屋,Nagoya Grampus,NAG,23
