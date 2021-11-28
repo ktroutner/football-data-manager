@@ -33,4 +33,10 @@ class Match < ApplicationRecord
   belongs_to :home_team, class_name: 'Team'
   belongs_to :away_team, class_name: 'Team'
   belongs_to :stadium
+
+  def display_score
+    return "#{home_score.presence || 0} - #{away_score.presence || 0}" if Time.zone.now.after?(kickoff_at)
+
+    "v."
+  end
 end

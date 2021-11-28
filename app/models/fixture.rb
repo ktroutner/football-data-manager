@@ -17,4 +17,8 @@
 class Fixture < ApplicationRecord
   belongs_to :season
   has_many :matches, dependent: :destroy
+
+  def name
+    I18n.t('activerecord.attributes.fixture.name', number: number)
+  end
 end

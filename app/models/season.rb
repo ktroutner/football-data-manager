@@ -19,4 +19,12 @@ class Season < ApplicationRecord
   has_many :members, class_name: 'SeasonMember', dependent: :destroy
   has_many :teams, through: :members
   has_many :fixtures, dependent: :destroy
+
+  def name
+    competition_name = case I18n.locale
+                       when :en then competition.name_en
+                       else competition.name
+                       end
+    I18n.t('activerecord.attributes.season.name', competition: competition_name, year: year)
+  end
 end
