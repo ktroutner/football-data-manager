@@ -2,7 +2,7 @@
 
 require 'csv'
 
-# チーム名,チーム名（略）,チーム名（ローマ字）,チーム名（ローマ字、略）,都道府県
+# Team name,Abbreviation,English team name,English abbrevation,Prefecture
 data = <<~CSV_TEXT
   北海道コンサドーレ札幌,札幌,Hokkaido Consadole Sapporo,CON,1
   ベガルタ仙台,仙台,Vegalta Sendai,VEG,4

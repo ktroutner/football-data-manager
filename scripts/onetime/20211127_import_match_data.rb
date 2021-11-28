@@ -2,7 +2,7 @@
 
 require 'csv'
 
-# 節,日付,曜日,キックオフ,会場,ホーム,アウェイ,得点（ホーム）,得点（アウェイ）,勝点（ホーム）,勝点（アウェイ）
+# Section,Date,Day of week,Kickoff time,Location,Home team,Away team,Score(home),Score(away),Points(home),Points(away)
 data = <<~CSV_TEXT
   1,2021/02/26,金,18:04,等々力,川崎F,横浜FM,2,0,3,0
   1,2021/02/27,土,14:00,札幌ド,札幌,横浜FC,5,1,3,0
