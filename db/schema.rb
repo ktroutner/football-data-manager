@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_28_060544) do
+ActiveRecord::Schema.define(version: 2021_11_28_072806) do
 
   create_table "competitions", force: :cascade do |t|
     t.string "name", null: false
@@ -35,10 +35,6 @@ ActiveRecord::Schema.define(version: 2021_11_28_060544) do
     t.integer "fixture_id"
     t.integer "home_team_id"
     t.integer "away_team_id"
-    t.string "stadium", null: false
-    t.string "stadium_en", null: false
-    t.string "stadium_short", null: false
-    t.string "stadium_short_en", null: false
     t.datetime "kickoff_at"
     t.integer "home_score"
     t.integer "away_score"
