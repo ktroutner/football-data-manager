@@ -2,6 +2,8 @@ ja:
   application:
     name: FootballDataManager
     description: サッカー試合のデータ管理ツール
+  actions:
+    edit: 編集
   date:
     formats:
       default: "%Y/%m/%d"
@@ -24,3 +26,10 @@ ja:
         name: "%{competition} %{year}シーズン"
       fixture:
         name: "第%{number}節"
+      match:
+        home_score: スコア（ホーム）
+        away_score: スコア（アウェイ）
+  pages:
+    matches:
+      edit:
+        title: 試合編集

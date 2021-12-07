@@ -8,3 +8,5 @@
 <p>
     <%= @match.stadium.name %>
 </p>
+
+<%= button_to I18n.t('actions.edit'), "/matches/#{@match.id}/edit", method: :get %>
