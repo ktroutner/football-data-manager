@@ -5,23 +5,21 @@
 # Table name: teams
 #
 #  id             :integer          not null, primary key
-#  hometown       :string
-#  hometown_en    :string
-#  name           :string           not null
-#  name_en        :string           not null
-#  name_short     :string           not null
-#  name_short_en  :string           not null
-#  prefecture     :integer          not null
+#  end_year       :integer
+#  start_year     :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  club_id        :integer          not null
 #  main_league_id :integer
 #
 # Indexes
 #
+#  index_teams_on_club_id         (club_id)
 #  index_teams_on_main_league_id  (main_league_id)
 #
 # Foreign Keys
 #
+#  club_id         (club_id => clubs.id)
 #  main_league_id  (main_league_id => competitions.id)
 #
 require 'test_helper'

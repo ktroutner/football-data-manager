@@ -2,7 +2,7 @@
 
 # Controller for matches
 class MatchesController < ApplicationController
-  before_action :find_match, only: %i(show edit update)
+  before_action :find_match, only: %i[show edit update]
 
   # GET /matches/:id
   def show

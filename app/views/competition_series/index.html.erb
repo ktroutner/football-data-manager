@@ -1,0 +1,11 @@
+<h1><%= I18n.t('activerecord.models.competition_series') %></h1>
+<ul>
+    <% @competition_series.each do |series| %>
+        <li>
+            <a href="/competition_series/<%= series.id %>">
+            <p>
+                <%= series.name %>
+            </p>
+        </li>
+    <% end %>
+</ul>

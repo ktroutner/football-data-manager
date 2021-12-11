@@ -12,10 +12,6 @@
 #   inflect.uncountable %w( fish sheep )
 # end
 
-ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.irregular 'stadium', 'stadiums'
-end
-
 # These inflection rules are supported but not enabled by default:
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'

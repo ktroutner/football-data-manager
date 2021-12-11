@@ -10,111 +10,167 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_28_072806) do
+ActiveRecord::Schema.define(version: 2021_12_11_032254) do
 
-  create_table "competitions", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "name_en", null: false
-    t.string "name_short", null: false
-    t.string "name_short_en", null: false
-    t.integer "region", null: false
-    t.integer "country"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "fixtures", force: :cascade do |t|
-    t.integer "season_id"
-    t.integer "number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["season_id"], name: "index_fixtures_on_season_id"
-  end
-
-  create_table "matches", force: :cascade do |t|
-    t.integer "fixture_id"
-    t.integer "home_team_id"
-    t.integer "away_team_id"
-    t.datetime "kickoff_at"
-    t.integer "home_score"
-    t.integer "away_score"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "stadium_id"
-    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
-    t.index ["fixture_id"], name: "index_matches_on_fixture_id"
-    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
-    t.index ["stadium_id"], name: "index_matches_on_stadium_id"
-  end
-
-  create_table "players", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "name_kana", null: false
-    t.string "name_en", null: false
-    t.integer "team_id"
-    t.integer "country"
-    t.integer "position"
-    t.date "birthday"
-    t.integer "height"
-    t.integer "footedness"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_id"], name: "index_players_on_team_id"
-  end
-
-  create_table "season_members", force: :cascade do |t|
-    t.integer "season_id"
-    t.integer "team_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["season_id"], name: "index_season_members_on_season_id"
-    t.index ["team_id"], name: "index_season_members_on_team_id"
-  end
-
-  create_table "seasons", force: :cascade do |t|
-    t.integer "competition_id"
-    t.integer "year", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["competition_id"], name: "index_seasons_on_competition_id"
-  end
-
-  create_table "stadiums", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "name_en", null: false
-    t.string "name_short", null: false
-    t.string "name_short_en", null: false
-    t.integer "prefecture", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "team_colors", force: :cascade do |t|
-    t.integer "team_id"
+  create_table "club_colors", force: :cascade do |t|
+    t.integer "club_id", null: false
     t.string "name"
     t.string "name_en"
     t.string "code", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_id"], name: "index_team_colors_on_team_id"
+    t.index ["club_id"], name: "index_club_colors_on_club_id"
   end
 
-  create_table "teams", force: :cascade do |t|
+  create_table "clubs", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_en", null: false
     t.string "name_short", null: false
     t.string "name_short_en", null: false
-    t.integer "prefecture", null: false
     t.string "hometown"
     t.string "hometown_en"
-    t.integer "main_league_id"
+    t.integer "country"
+    t.integer "prefecture"
+    t.string "logo_file_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "competition_series", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_short", null: false
+    t.string "name_short_en", null: false
+    t.boolean "international", default: false, null: false
+    t.integer "region"
+    t.integer "country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "competition_stages", force: :cascade do |t|
+    t.integer "competition_id", null: false
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_id"], name: "index_competition_stages_on_competition_id"
+  end
+
+  create_table "competition_teams", force: :cascade do |t|
+    t.integer "competition_id", null: false
+    t.integer "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_id"], name: "index_competition_teams_on_competition_id"
+    t.index ["team_id"], name: "index_competition_teams_on_team_id"
+  end
+
+  create_table "competitions", force: :cascade do |t|
+    t.integer "series_id", null: false
+    t.integer "start_year", null: false
+    t.integer "end_year", null: false
+    t.string "type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["series_id"], name: "index_competitions_on_series_id"
+  end
+
+  create_table "fixtures", force: :cascade do |t|
+    t.integer "competition_id", null: false
+    t.integer "stage_id"
+    t.integer "order", null: false
+    t.string "name"
+    t.string "name_en"
+    t.string "name_short"
+    t.string "name_short_en"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_id", "stage_id", "order"], name: "index_fixtures_on_competition_id_and_stage_id_and_order", unique: true
+    t.index ["competition_id"], name: "index_fixtures_on_competition_id"
+    t.index ["stage_id"], name: "index_fixtures_on_stage_id"
+  end
+
+  create_table "group_teams", force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_teams_on_group_id"
+    t.index ["team_id"], name: "index_group_teams_on_team_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.integer "stage_id", null: false
+    t.string "name"
+    t.string "name_en"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stage_id"], name: "index_groups_on_stage_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "fixture_id", null: false
+    t.integer "home_team_id"
+    t.integer "away_team_id"
+    t.integer "venue_id"
+    t.datetime "kickoff_at"
+    t.integer "status"
+    t.integer "home_score"
+    t.integer "away_score"
+    t.integer "winner_next_match_id"
+    t.integer "loser_next_match_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["fixture_id"], name: "index_matches_on_fixture_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
+    t.index ["loser_next_match_id"], name: "index_matches_on_loser_next_match_id"
+    t.index ["venue_id"], name: "index_matches_on_venue_id"
+    t.index ["winner_next_match_id"], name: "index_matches_on_winner_next_match_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer "club_id", null: false
+    t.integer "main_league_id"
+    t.integer "start_year"
+    t.integer "end_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["club_id"], name: "index_teams_on_club_id"
     t.index ["main_league_id"], name: "index_teams_on_main_league_id"
   end
 
-  add_foreign_key "matches", "stadiums"
+  create_table "venues", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_short", null: false
+    t.string "name_short_en", null: false
+    t.integer "country", null: false
+    t.integer "prefecture", null: false
+    t.string "city", null: false
+    t.string "city_en", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "club_colors", "clubs"
+  add_foreign_key "competition_stages", "competitions"
+  add_foreign_key "competition_teams", "competitions"
+  add_foreign_key "competition_teams", "teams"
+  add_foreign_key "competitions", "competition_series", column: "series_id"
+  add_foreign_key "fixtures", "competition_stages", column: "stage_id"
+  add_foreign_key "fixtures", "competitions"
+  add_foreign_key "group_teams", "competition_teams", column: "team_id"
+  add_foreign_key "group_teams", "groups"
+  add_foreign_key "groups", "competition_stages", column: "stage_id"
+  add_foreign_key "matches", "fixtures"
+  add_foreign_key "matches", "matches", column: "loser_next_match_id"
+  add_foreign_key "matches", "matches", column: "winner_next_match_id"
   add_foreign_key "matches", "teams", column: "away_team_id"
   add_foreign_key "matches", "teams", column: "home_team_id"
+  add_foreign_key "matches", "venues"
+  add_foreign_key "teams", "clubs"
   add_foreign_key "teams", "competitions", column: "main_league_id"
 end

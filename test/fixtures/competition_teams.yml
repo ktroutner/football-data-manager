@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: competition_teams
+#
+#  id             :integer          not null, primary key
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  competition_id :integer          not null
+#  team_id        :integer          not null
+#
+# Indexes
+#
+#  index_competition_teams_on_competition_id  (competition_id)
+#  index_competition_teams_on_team_id         (team_id)
+#
+# Foreign Keys
+#
+#  competition_id  (competition_id => competitions.id)
+#  team_id         (team_id => teams.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

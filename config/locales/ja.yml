@@ -17,13 +17,20 @@ ja:
       with_day_of_week: "%Y年%m月%d日(%a) %H:%M"
   activerecord:
     models:
+      competition_series: 大会一覧
       competition: 大会
-      season: シーズン
+      league: リーグ
+      tournament: 大会
+      friendly: 親善試合
       fixture: 節
       match: 試合
     attributes:
-      season:
-        name: "%{competition} %{year}シーズン"
+      league:
+        name: "%{series_name} %{year}シーズン"
+      tournament:
+        name: "%{year} %{series_name}"
+      friendly:
+        name: "%{year} %{series_name}"
       fixture:
         name: "第%{number}節"
       match:

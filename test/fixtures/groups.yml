@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  name_en    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  stage_id   :integer          not null
+#
+# Indexes
+#
+#  index_groups_on_stage_id  (stage_id)
+#
+# Foreign Keys
+#
+#  stage_id  (stage_id => competition_stages.id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
