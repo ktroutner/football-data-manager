@@ -1,10 +1,10 @@
 <h1><%= @competition.name %></h1>
 <ul>
-    <% @competition.seasons.order(:year).each do |season| %>
+    <% @competition.fixtures.order(:order).each do |fixture| %>
         <li>
-            <a href="/seasons/<%= season.id %>">
+            <a href="/fixtures/<%= fixture.id %>">
             <p>
-                <%= season.name %>
+                <%= fixture.name %>
             </p>
         </li>
     <% end %>

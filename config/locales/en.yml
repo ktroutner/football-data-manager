@@ -17,11 +17,11 @@ en:
       with_day_of_week: "%A, %B %d, %Y %H:%M"
   activerecord:
     models:
+      competition_series: Competitions
       competition: Competition
       league: League
       tournament: Tournament
       friendly: Friendly
-      season: Season
       fixture: Section
       match: Match
     attributes:
@@ -31,8 +31,6 @@ en:
         name: "%{year} %{series_name}"
       friendly:
         name: "%{year} %{series_name}"
-      season:
-        name: "%{competition} %{year} Season"
       fixture:
         name: "Section %{number}"
       match:

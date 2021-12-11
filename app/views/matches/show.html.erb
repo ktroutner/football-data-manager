@@ -6,7 +6,7 @@
     <%= I18n.l(@match.kickoff_at, format: :with_day_of_week) %>
 </p>
 <p>
-    <%= @match.stadium.name %>
+    <%= @match.venue.name %>
 </p>
 
 <%= button_to I18n.t('actions.edit'), "/matches/#{@match.id}/edit", method: :get %>
