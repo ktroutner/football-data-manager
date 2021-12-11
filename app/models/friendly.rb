@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: competitions
@@ -18,13 +20,8 @@
 #
 #  series_id  (series_id => competition_series.id)
 #
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+class Friendly < Competition
+  def name
+    I18n.t('activerecord.attributes.friendly.name', series_name: series.name, year: display_year)
+  end
+end

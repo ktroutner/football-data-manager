@@ -1,28 +1,22 @@
 # == Schema Information
 #
-# Table name: fixtures
+# Table name: competition_stages
 #
 #  id             :integer          not null, primary key
-#  name           :string
-#  name_en        :string
-#  name_short     :string
-#  name_short_en  :string
-#  order          :integer          not null
+#  name           :string           not null
+#  name_en        :string           not null
+#  type           :string           not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  competition_id :integer          not null
-#  stage_id       :integer
 #
 # Indexes
 #
-#  index_fixtures_on_competition_id                         (competition_id)
-#  index_fixtures_on_competition_id_and_stage_id_and_order  (competition_id,stage_id,order) UNIQUE
-#  index_fixtures_on_stage_id                               (stage_id)
+#  index_competition_stages_on_competition_id  (competition_id)
 #
 # Foreign Keys
 #
 #  competition_id  (competition_id => competitions.id)
-#  stage_id        (stage_id => competition_stages.id)
 #
 
 # This model initially had no columns defined. If you add columns to the

@@ -18,10 +18,19 @@ ja:
   activerecord:
     models:
       competition: 大会
+      league: リーグ
+      tournament: 大会
+      friendly: 親善試合
       season: シーズン
       fixture: 節
       match: 試合
     attributes:
+      league:
+        name: "%{series_name} %{year}シーズン"
+      tournament:
+        name: "%{year} %{series_name}"
+      friendly:
+        name: "%{year} %{series_name}"
       season:
         name: "%{competition} %{year}シーズン"
       fixture:

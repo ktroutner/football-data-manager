@@ -18,10 +18,19 @@ en:
   activerecord:
     models:
       competition: Competition
+      league: League
+      tournament: Tournament
+      friendly: Friendly
       season: Season
       fixture: Section
       match: Match
     attributes:
+      league:
+        name: "%{series_name} %{year} Season"
+      tournament:
+        name: "%{year} %{series_name}"
+      friendly:
+        name: "%{year} %{series_name}"
       season:
         name: "%{competition} %{year} Season"
       fixture:

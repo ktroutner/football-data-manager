@@ -1,22 +1,21 @@
 # == Schema Information
 #
-# Table name: competitions
+# Table name: groups
 #
 #  id         :integer          not null, primary key
-#  end_year   :integer          not null
-#  start_year :integer          not null
-#  type       :string           not null
+#  name       :string
+#  name_en    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  series_id  :integer          not null
+#  stage_id   :integer          not null
 #
 # Indexes
 #
-#  index_competitions_on_series_id  (series_id)
+#  index_groups_on_stage_id  (stage_id)
 #
 # Foreign Keys
 #
-#  series_id  (series_id => competition_series.id)
+#  stage_id  (stage_id => competition_stages.id)
 #
 
 # This model initially had no columns defined. If you add columns to the
