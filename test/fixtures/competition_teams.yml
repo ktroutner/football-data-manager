@@ -1,24 +1,22 @@
 # == Schema Information
 #
-# Table name: teams
+# Table name: competition_teams
 #
 #  id             :integer          not null, primary key
-#  end_year       :integer
-#  start_year     :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  club_id        :integer          not null
-#  main_league_id :integer
+#  competition_id :integer          not null
+#  team_id        :integer          not null
 #
 # Indexes
 #
-#  index_teams_on_club_id         (club_id)
-#  index_teams_on_main_league_id  (main_league_id)
+#  index_competition_teams_on_competition_id  (competition_id)
+#  index_competition_teams_on_team_id         (team_id)
 #
 # Foreign Keys
 #
-#  club_id         (club_id => clubs.id)
-#  main_league_id  (main_league_id => competitions.id)
+#  competition_id  (competition_id => competitions.id)
+#  team_id         (team_id => teams.id)
 #
 
 # This model initially had no columns defined. If you add columns to the

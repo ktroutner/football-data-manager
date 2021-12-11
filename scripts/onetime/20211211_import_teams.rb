@@ -27,11 +27,13 @@ data = <<~CSV_TEXT
 CSV_TEXT
 
 CSV.parse(data) do |row|
-  Team.create!(
+  club = Club.create!(
     name: row[0],
-    name_short: row[1],
     name_en: row[2],
+    name_short: row[1],
     name_short_en: row[3],
-    prefecture: row[4]
+    country: Country.new(:japan),
+    prefecture: Prefecture.new(Prefecture::VALUES.key(row[4].to_i))
   )
+  club.teams.create!(start_year: 2021, end_year: 2021)
 end

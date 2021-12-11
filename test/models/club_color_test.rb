@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: team_colors
+# Table name: club_colors
 #
 #  id         :integer          not null, primary key
 #  code       :string           not null
@@ -10,12 +10,20 @@
 #  name_en    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  team_id    :integer
+#  club_id    :integer          not null
 #
 # Indexes
 #
-#  index_team_colors_on_team_id  (team_id)
+#  index_club_colors_on_club_id  (club_id)
 #
-class TeamColor < ApplicationRecord
-  belongs_to :team
+# Foreign Keys
+#
+#  club_id  (club_id => clubs.id)
+#
+require 'test_helper'
+
+class ClubColorTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

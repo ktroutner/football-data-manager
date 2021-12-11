@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_11_021711) do
+ActiveRecord::Schema.define(version: 2021_12_11_026471) do
+
+  create_table "club_colors", force: :cascade do |t|
+    t.integer "club_id", null: false
+    t.string "name"
+    t.string "name_en"
+    t.string "code", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["club_id"], name: "index_club_colors_on_club_id"
+  end
+
+  create_table "clubs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_short", null: false
+    t.string "name_short_en", null: false
+    t.string "hometown"
+    t.string "hometown_en"
+    t.integer "country"
+    t.integer "prefecture"
+    t.string "logo_file_path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "competition_series", force: :cascade do |t|
     t.string "name", null: false
@@ -32,6 +56,15 @@ ActiveRecord::Schema.define(version: 2021_12_11_021711) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["competition_id"], name: "index_competition_stages_on_competition_id"
+  end
+
+  create_table "competition_teams", force: :cascade do |t|
+    t.integer "competition_id", null: false
+    t.integer "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_id"], name: "index_competition_teams_on_competition_id"
+    t.index ["team_id"], name: "index_competition_teams_on_team_id"
   end
 
   create_table "competitions", force: :cascade do |t|
@@ -59,6 +92,15 @@ ActiveRecord::Schema.define(version: 2021_12_11_021711) do
     t.index ["stage_id"], name: "index_fixtures_on_stage_id"
   end
 
+  create_table "group_teams", force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_teams_on_group_id"
+    t.index ["team_id"], name: "index_group_teams_on_team_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.integer "stage_id", null: false
     t.string "name"
@@ -68,9 +110,27 @@ ActiveRecord::Schema.define(version: 2021_12_11_021711) do
     t.index ["stage_id"], name: "index_groups_on_stage_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.integer "club_id", null: false
+    t.integer "main_league_id"
+    t.integer "start_year"
+    t.integer "end_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["club_id"], name: "index_teams_on_club_id"
+    t.index ["main_league_id"], name: "index_teams_on_main_league_id"
+  end
+
+  add_foreign_key "club_colors", "clubs"
   add_foreign_key "competition_stages", "competitions"
+  add_foreign_key "competition_teams", "competitions"
+  add_foreign_key "competition_teams", "teams"
   add_foreign_key "competitions", "competition_series", column: "series_id"
   add_foreign_key "fixtures", "competition_stages", column: "stage_id"
   add_foreign_key "fixtures", "competitions"
+  add_foreign_key "group_teams", "competition_teams", column: "team_id"
+  add_foreign_key "group_teams", "groups"
   add_foreign_key "groups", "competition_stages", column: "stage_id"
+  add_foreign_key "teams", "clubs"
+  add_foreign_key "teams", "competitions", column: "main_league_id"
 end

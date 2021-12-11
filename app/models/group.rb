@@ -21,6 +21,9 @@
 #
 class Group < ApplicationRecord
   belongs_to :stage, class_name: 'GroupStage'
+  has_many :group_teams, class_name: 'GroupTeam', dependent: :destroy
+  has_many :competition_teams, through: :group_teams, source: :team
+  has_many :teams, through: :competition_teams
 
   def name
     case I18n.locale

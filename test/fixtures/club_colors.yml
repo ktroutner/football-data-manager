@@ -1,17 +1,22 @@
 # == Schema Information
 #
-# Table name: season_members
+# Table name: club_colors
 #
 #  id         :integer          not null, primary key
+#  code       :string           not null
+#  name       :string
+#  name_en    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  season_id  :integer
-#  team_id    :integer
+#  club_id    :integer          not null
 #
 # Indexes
 #
-#  index_season_members_on_season_id  (season_id)
-#  index_season_members_on_team_id    (team_id)
+#  index_club_colors_on_club_id  (club_id)
+#
+# Foreign Keys
+#
+#  club_id  (club_id => clubs.id)
 #
 
 # This model initially had no columns defined. If you add columns to the
