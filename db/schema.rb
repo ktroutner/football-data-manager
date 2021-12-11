@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_11_026471) do
+ActiveRecord::Schema.define(version: 2021_12_11_032254) do
 
   create_table "club_colors", force: :cascade do |t|
     t.integer "club_id", null: false
@@ -110,6 +110,27 @@ ActiveRecord::Schema.define(version: 2021_12_11_026471) do
     t.index ["stage_id"], name: "index_groups_on_stage_id"
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.integer "fixture_id", null: false
+    t.integer "home_team_id"
+    t.integer "away_team_id"
+    t.integer "venue_id"
+    t.datetime "kickoff_at"
+    t.integer "status"
+    t.integer "home_score"
+    t.integer "away_score"
+    t.integer "winner_next_match_id"
+    t.integer "loser_next_match_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["fixture_id"], name: "index_matches_on_fixture_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
+    t.index ["loser_next_match_id"], name: "index_matches_on_loser_next_match_id"
+    t.index ["venue_id"], name: "index_matches_on_venue_id"
+    t.index ["winner_next_match_id"], name: "index_matches_on_winner_next_match_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.integer "club_id", null: false
     t.integer "main_league_id"
@@ -119,6 +140,19 @@ ActiveRecord::Schema.define(version: 2021_12_11_026471) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["club_id"], name: "index_teams_on_club_id"
     t.index ["main_league_id"], name: "index_teams_on_main_league_id"
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_short", null: false
+    t.string "name_short_en", null: false
+    t.integer "country", null: false
+    t.integer "prefecture", null: false
+    t.string "city", null: false
+    t.string "city_en", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "club_colors", "clubs"
@@ -131,6 +165,12 @@ ActiveRecord::Schema.define(version: 2021_12_11_026471) do
   add_foreign_key "group_teams", "competition_teams", column: "team_id"
   add_foreign_key "group_teams", "groups"
   add_foreign_key "groups", "competition_stages", column: "stage_id"
+  add_foreign_key "matches", "fixtures"
+  add_foreign_key "matches", "matches", column: "loser_next_match_id"
+  add_foreign_key "matches", "matches", column: "winner_next_match_id"
+  add_foreign_key "matches", "teams", column: "away_team_id"
+  add_foreign_key "matches", "teams", column: "home_team_id"
+  add_foreign_key "matches", "venues"
   add_foreign_key "teams", "clubs"
   add_foreign_key "teams", "competitions", column: "main_league_id"
 end

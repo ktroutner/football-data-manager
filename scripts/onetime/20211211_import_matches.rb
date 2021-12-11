@@ -374,29 +374,35 @@ data = <<~CSV_TEXT
   37,2021/11/27,土,14:00,Eスタ,広島,FC東京,1,2,0,3
   37,2021/11/27,土,14:00,ベススタ,福岡,仙台,2,2,1,1
   37,2021/11/27,土,14:00,昭和電ド,大分,横浜FC,2,0,3,0
-  38,2021/12/04,土,14:00,ユアスタ,仙台,鹿島,,,,
-  38,2021/12/04,土,14:00,三協F柏,柏,大分,,,,
-  38,2021/12/04,土,14:00,味スタ,FC東京,福岡,,,,
-  38,2021/12/04,土,14:00,日産ス,横浜FM,川崎F,,,,
-  38,2021/12/04,土,14:00,ニッパツ,横浜FC,札幌,,,,
-  38,2021/12/04,土,14:00,アイスタ,清水,C大阪,,,,
-  38,2021/12/04,土,14:00,豊田ス,名古屋,浦和,,,,
-  38,2021/12/04,土,14:00,パナスタ,G大阪,湘南,,,,
-  38,2021/12/04,土,14:00,鳴門大塚,徳島,広島,,,,
-  38,2021/12/04,土,14:00,駅スタ,鳥栖,神戸,,,,
+  38,2021/12/04,土,14:00,ユアスタ,仙台,鹿島,0,1,0,3
+  38,2021/12/04,土,14:00,三協F柏,柏,大分,2,3,0,3
+  38,2021/12/04,土,14:00,味スタ,FC東京,福岡,0,0,1,1
+  38,2021/12/04,土,14:00,日産ス,横浜FM,川崎F,1,1,1,1
+  38,2021/12/04,土,14:00,ニッパツ,横浜FC,札幌,0,1,0,3
+  38,2021/12/04,土,14:00,アイスタ,清水,C大阪,2,1,3,0
+  38,2021/12/04,土,14:00,豊田ス,名古屋,浦和,0,0,1,1
+  38,2021/12/04,土,14:00,パナスタ,G大阪,湘南,0,0,1,1
+  38,2021/12/04,土,14:00,鳴門大塚,徳島,広島,2,4,0,3
+  38,2021/12/04,土,14:00,駅スタ,鳥栖,神戸,0,2,0,3
 CSV_TEXT
 
-j1_2021 = Season.find_by(competition: Competition.find_by(name_short: 'J1'), year: 2021)
+j1 = CompetitionSeries.find_by(name_short: 'J1')
+j1_2021 = Competition.find_by(series: j1, start_year: 2021)
 CSV.parse(data) do |row|
-  fixture = Fixture.find_or_create_by!(season: j1_2021, number: row[0])
+  fixture = Fixture.find_or_create_by!(
+    competition: j1_2021,
+    order: row[0],
+    name: "第#{row[0]}節",
+    name_en: "Matchday #{row[0]}",
+    name_short: "第#{row[0]}節",
+    name_short_en: "MD#{row[0]}"
+  )
   fixture.matches.create!(
-    home_team: Team.find_by(name_short: row[5]),
-    away_team: Team.find_by(name_short: row[6]),
-    stadium: row[4],
-    stadium_en: '',
-    stadium_short: row[4],
-    stadium_short_en: '',
+    home_team: Team.find_by(club: Club.find_by(name_short: row[5]), start_year: 2021),
+    away_team: Team.find_by(club: Club.find_by(name_short: row[6]), start_year: 2021),
+    venue: Venue.find_by(name_short: row[4]),
     kickoff_at: Time.zone.parse("#{row[1]} #{row[3]}"),
+    status: :complete,
     home_score: row[7],
     away_score: row[8]
   )

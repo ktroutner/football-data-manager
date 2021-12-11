@@ -27,6 +27,8 @@ class Team < ApplicationRecord
   belongs_to :main_league, class_name: 'League', optional: true
   has_many :competition_teams, dependent: :destroy
   has_many :competitions, through: :competition_teams
+  has_many :home_matches, class_name: 'Match', dependent: :nullify
+  has_many :away_matches, class_name: 'Match', dependent: :nullify
 
   delegate :name, :short_name, to: :club
 

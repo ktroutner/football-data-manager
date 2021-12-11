@@ -29,6 +29,7 @@
 class Fixture < ApplicationRecord
   belongs_to :competition
   belongs_to :stage, class_name: 'CompetitionStage', optional: true
+  has_many :matches, dependent: :destroy
 
   def name
     case I18n.locale

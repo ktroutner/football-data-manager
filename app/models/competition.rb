@@ -24,6 +24,7 @@ class Competition < ApplicationRecord
   belongs_to :series, class_name: 'CompetitionSeries'
   has_many :competition_teams, dependent: :destroy
   has_many :teams, through: :competition_teams
+  has_many :matches, dependent: :destroy
 
   def display_year
     return start_year.to_s if start_year == end_year

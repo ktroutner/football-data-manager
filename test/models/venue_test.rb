@@ -2,9 +2,12 @@
 
 # == Schema Information
 #
-# Table name: stadiums
+# Table name: venues
 #
 #  id            :integer          not null, primary key
+#  city          :string           not null
+#  city_en       :string           not null
+#  country       :integer          not null
 #  name          :string           not null
 #  name_en       :string           not null
 #  name_short    :string           not null
@@ -15,7 +18,7 @@
 #
 require 'test_helper'
 
-class StadiumTest < ActiveSupport::TestCase
+class VenueTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
