@@ -24,21 +24,24 @@
 #
 #  stage_id  (stage_id => competition_stages.id)
 #
-class Fixture < ApplicationRecord
-  belongs_to :stage, class_name: 'CompetitionStage', optional: true
-  has_many :matches, dependent: :destroy
-
-  def name
-    case I18n.locale
-    when :en then self[:name_en]
-    else self[:name]
-    end
+class Round < Fixture
+  def winners
+    matches.map(&:winner)
   end
 
-  def short_name
-    case I18n.locale
-    when :en then self[:name_short_en]
-    else self[:name_short]
-    end
+  def winner
+    raise StandardError unless matches.count == 1
+
+    matches.first.winner
+  end
+
+  def losers
+    matches.map(&:loser)
+  end
+
+  def loser
+    raise StandardError unless matches.count == 1
+
+    matches.first.loser
   end
 end

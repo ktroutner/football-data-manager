@@ -5,14 +5,17 @@
 # Table name: matches
 #
 #  id                   :integer          not null, primary key
+#  away_pk              :integer
 #  away_score           :integer
+#  category             :integer
+#  home_pk              :integer
 #  home_score           :integer
 #  kickoff_at           :datetime
 #  status               :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  away_team_id         :integer
-#  fixture_id           :integer          not null
+#  fixture_id           :integer
 #  home_team_id         :integer
 #  loser_next_match_id  :integer
 #  venue_id             :integer

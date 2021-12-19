@@ -4,8 +4,8 @@
 class CreateFixtures < ActiveRecord::Migration[6.1]
   def change
     create_table :fixtures do |t|
-      t.references :competition, foreign_key: true, null: false
-      t.references :stage, foreign_key: { to_table: :competition_stages }
+      t.references :stage, foreign_key: { to_table: :competition_stages }, null: false
+      t.string :type, null: false
       t.integer :order, null: false
       t.string :name
       t.string :name_en
@@ -15,6 +15,6 @@ class CreateFixtures < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :fixtures, %i[competition_id stage_id order], unique: true
+    add_index :fixtures, %i[stage_id order], unique: true
   end
 end

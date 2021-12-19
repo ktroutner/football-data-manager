@@ -2,26 +2,26 @@
 
 # == Schema Information
 #
-# Table name: groups
+# Table name: league_groups
 #
 #  id         :integer          not null, primary key
 #  name       :string
 #  name_en    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  stage_id   :integer          not null
+#  league_id  :integer          not null
 #
 # Indexes
 #
-#  index_groups_on_stage_id  (stage_id)
+#  index_league_groups_on_league_id  (league_id)
 #
 # Foreign Keys
 #
-#  stage_id  (stage_id => competition_stages.id)
+#  league_id  (league_id => competition_stages.id)
 #
 require 'test_helper'
 
-class GroupTest < ActiveSupport::TestCase
+class LeagueGroupTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -8,7 +8,6 @@ class CreateCompetitionSeries < ActiveRecord::Migration[6.1]
       t.string :name_en, null: false
       t.string :name_short, null: false
       t.string :name_short_en, null: false
-      t.boolean :international, null: false, default: false
       t.integer :region
       t.integer :country
 

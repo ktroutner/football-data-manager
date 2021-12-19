@@ -17,10 +17,12 @@
 #
 # Foreign Keys
 #
-#  group_id  (group_id => groups.id)
+#  group_id  (group_id => league_groups.id)
 #  team_id   (team_id => competition_teams.id)
 #
 class GroupTeam < ApplicationRecord
-  belongs_to :group
+  belongs_to :group, class_name: 'LeagueGroup'
   belongs_to :team, class_name: 'CompetitionTeam'
+
+  delegate :name, :short_name, to: :team
 end

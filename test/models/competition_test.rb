@@ -4,13 +4,16 @@
 #
 # Table name: competitions
 #
-#  id         :integer          not null, primary key
-#  end_year   :integer          not null
-#  start_year :integer          not null
-#  type       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  series_id  :integer          not null
+#  id            :integer          not null, primary key
+#  end_year      :integer
+#  name          :string           not null
+#  name_en       :string           not null
+#  name_short    :string           not null
+#  name_short_en :string           not null
+#  start_year    :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  series_id     :integer          not null
 #
 # Indexes
 #

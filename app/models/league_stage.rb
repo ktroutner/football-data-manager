@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: competition_stages
@@ -20,13 +22,22 @@
 #
 #  competition_id  (competition_id => competitions.id)
 #
+class LeagueStage < CompetitionStage
+  has_many :matchdays, class_name: 'Matchday', foreign_key: :stage_id, inverse_of: :stage, dependent: :destroy
+  has_many :matches, through: :matchdays
+  has_many :groups, class_name: 'LeagueGroup', foreign_key: :league_id, inverse_of: :league, dependent: :destroy
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+  def standings(section = nil)
+    groups.to_h { |group| [group, group.standings] }
+  end
+
+  def winners(count = 1)
+    groups.to_h { |group| [group, group.winners(count)] }
+  end
+
+  def winner
+    raise StandardError unless groups.count == 1
+
+    winners.values.flatten.first
+  end
+end
