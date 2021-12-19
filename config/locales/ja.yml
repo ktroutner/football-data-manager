@@ -29,3 +29,7 @@ ja:
     matches:
       edit:
         title: 試合編集
+    fixtures:
+      title: 節一覧
+    results:
+      title: 結果

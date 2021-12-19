@@ -3,9 +3,8 @@
     <% @fixture.matches.order(:kickoff_at).each do |match| %>
         <li>
             <a href="/matches/<%= match.id %>">
-            <p>
-                <%= match.home_team.short_name %> v. <%= match.away_team.short_name %>
-            </p>
+                <p><%= match.home_team.short_name %> v. <%= match.away_team.short_name %></p>
+            </a>
         </li>
     <% end %>
 </ul>

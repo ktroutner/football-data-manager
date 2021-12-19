@@ -3,7 +3,7 @@ en:
     name: FootballDataManager
     description: Manage and view data on football matches
   actions:
-      edit: Edit
+    edit: Edit
   date:
     formats:
       default: "%Y/%m/%d"
@@ -29,3 +29,7 @@ en:
     matches:
       edit:
         title: Edit Match
+    fixtures:
+      title: Fixture List
+    results:
+      title: Results
