@@ -26,7 +26,8 @@
 #
 class Round < Fixture
   def winners
-    matches.map(&:winner)
+    matchups = matches.group_by { |match| [match.home_team, match.away_team].sort }
+    matchups.map { |_matchup, matches| matchup_winner(matches) }
   end
 
   def winner
@@ -43,5 +44,42 @@ class Round < Fixture
     raise StandardError unless matches.count == 1
 
     matches.first.loser
+  end
+
+  private
+
+  def matchup_winner(matches)
+    case matches.size
+    when 1 then matches.first.winner
+    when 2 then aggregate_winner(matches)
+    else raise InvalidArgumentError
+    end
+  end
+
+  def aggregate_winner(matches)
+    team1 = matches.first.home_team
+    team2 = matches.first.away_team
+
+    winner_by_aggregate_goals(team1, team2, matches) ||
+      winner_by_away_goals(team1, team2, matches) ||
+      matches.second.winner_by_pk
+  end
+
+  def winner_by_aggregate_goals(team1, team2, matches)
+    team1_aggregate = matches.first.home_score + matches.second.away_score
+    team2_aggregate = matches.first.away_score + matches.second.home_score
+
+    if team1_aggregate > team2_aggregate then team1
+    elsif team2_aggregate > team1_aggregate then team2
+    end
+  end
+
+  def winner_by_away_goals(team1, team2, matches)
+    team1_away_goals = matches.second.away_score
+    team2_away_goals = matches.first.away_score
+
+    if team1_away_goals > team2_away_goals then team1
+    elsif team2_away_goals > team1_away_goals then team2
+    end
   end
 end

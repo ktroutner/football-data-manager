@@ -28,11 +28,11 @@ class LeagueStage < CompetitionStage
   has_many :groups, class_name: 'LeagueGroup', foreign_key: :league_id, inverse_of: :league, dependent: :destroy
 
   def standings(section = nil)
-    groups.to_h { |group| [group, group.standings] }
+    groups.index_with { |group| group.standings(section) }
   end
 
   def winners(count = 1)
-    groups.to_h { |group| [group, group.winners(count)] }
+    groups.index_with { |group| group.winners(count) }
   end
 
   def winner

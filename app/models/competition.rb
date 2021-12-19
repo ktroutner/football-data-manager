@@ -50,4 +50,8 @@ class Competition < ApplicationRecord
 
     "#{start_year} - #{end_year}"
   end
+
+  def winner
+    stages.order(:order).last.winner
+  end
 end

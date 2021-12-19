@@ -25,4 +25,12 @@
 class KnockoutStage < CompetitionStage
   has_many :rounds, class_name: 'Round', foreign_key: :stage_id, inverse_of: :stage, dependent: :destroy
   has_many :matches, through: :rounds
+
+  def winners
+    rounds.order(:order).last.winners
+  end
+
+  def winner
+    rounds.order(:order).last.winner
+  end
 end

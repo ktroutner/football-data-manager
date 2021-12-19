@@ -35,4 +35,8 @@ class CompetitionSeries < ApplicationRecord
     else self[:name_short]
     end
   end
+
+  def past_winners
+    iterations.order(:start_year).to_h { |iteration| [iteration.display_year, iteration.winner] }
+  end
 end

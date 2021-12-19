@@ -59,4 +59,38 @@ class Match < ApplicationRecord
 
     "#{home_score} - #{away_score}"
   end
+
+  def winner
+    winner_by_score || winner_by_pk
+  end
+
+  def loser
+    loser_by_score || loser_by_pk
+  end
+
+  private
+
+  def winner_by_score
+    if home_score > away_score then home_team
+    elsif away_score > home_score then away_team
+    end
+  end
+
+  def loser_by_score
+    if home_score > away_score then away_team
+    elsif away_score > home_score then home_team
+    end
+  end
+
+  def winner_by_pk
+    if home_pk > away_pk then home_team
+    elsif away_pk > home_pk then away_team
+    end
+  end
+
+  def loser_by_pk
+    if home_pk > away_pk then away_team
+    elsif away_pk > home_pk then home_team
+    end
+  end
 end
