@@ -4,7 +4,6 @@
 #
 #  id            :integer          not null, primary key
 #  country       :integer
-#  international :boolean          default(FALSE), not null
 #  name          :string           not null
 #  name_en       :string           not null
 #  name_short    :string           not null

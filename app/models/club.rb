@@ -5,7 +5,7 @@
 # Table name: clubs
 #
 #  id             :integer          not null, primary key
-#  country        :integer
+#  country        :integer          not null
 #  hometown       :string
 #  hometown_en    :string
 #  logo_file_path :string
@@ -13,7 +13,7 @@
 #  name_en        :string           not null
 #  name_short     :string           not null
 #  name_short_en  :string           not null
-#  prefecture     :integer
+#  prefecture     :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

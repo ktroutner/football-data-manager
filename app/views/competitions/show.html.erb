@@ -1,11 +1,13 @@
 <h1><%= @competition.name %></h1>
 <ul>
-    <% @competition.fixtures.order(:order).each do |fixture| %>
-        <li>
-            <a href="/fixtures/<%= fixture.id %>">
-            <p>
-                <%= fixture.name %>
-            </p>
-        </li>
-    <% end %>
+    <li>
+        <a href="/competitions/<%= @competition.id %>/fixtures">
+            <p><%= I18n.t('pages.fixtures.title') %></p>
+        </a>
+    </li>
+    <li>
+        <a href="/competitions/<%= @competition.id %>/results">
+            <p><%= I18n.t('pages.results.title') %></p>
+        </a>
+    </li>
 </ul>

@@ -17,7 +17,7 @@
 #
 # Foreign Keys
 #
-#  group_id  (group_id => groups.id)
+#  group_id  (group_id => league_groups.id)
 #  team_id   (team_id => competition_teams.id)
 #
 require 'test_helper'

@@ -4,7 +4,8 @@
 class CreateMatches < ActiveRecord::Migration[6.1]
   def change
     create_table :matches do |t|
-      t.references :fixture, foreign_key: true, null: false
+      t.references :fixture, foreign_key: true
+      t.integer :category
       t.references :home_team, foreign_key: { to_table: :teams }
       t.references :away_team, foreign_key: { to_table: :teams }
       t.references :venue, foreign_key: true
@@ -12,6 +13,8 @@ class CreateMatches < ActiveRecord::Migration[6.1]
       t.integer :status
       t.integer :home_score
       t.integer :away_score
+      t.integer :home_pk
+      t.integer :away_pk
       t.references :winner_next_match, foreign_key: { to_table: :matches }
       t.references :loser_next_match, foreign_key: { to_table: :matches }
 

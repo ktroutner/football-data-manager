@@ -388,16 +388,12 @@ CSV_TEXT
 
 j1 = CompetitionSeries.find_by(name_short: 'J1')
 j1_2021 = Competition.find_by(series: j1, start_year: 2021)
+league = j1_2021.stages.first
+
 CSV.parse(data) do |row|
-  fixture = Fixture.find_or_create_by!(
-    competition: j1_2021,
-    order: row[0],
-    name: "第#{row[0]}節",
-    name_en: "Matchday #{row[0]}",
-    name_short: "第#{row[0]}節",
-    name_short_en: "MD#{row[0]}"
-  )
-  fixture.matches.create!(
+  matchday = league.matchdays.find_or_create_by!(order: row[0])
+  matchday.matches.create!(
+    category: 0,
     home_team: Team.find_by(club: Club.find_by(name_short: row[5]), start_year: 2021),
     away_team: Team.find_by(club: Club.find_by(name_short: row[6]), start_year: 2021),
     venue: Venue.find_by(name_short: row[4]),

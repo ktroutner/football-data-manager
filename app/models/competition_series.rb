@@ -6,7 +6,6 @@
 #
 #  id            :integer          not null, primary key
 #  country       :integer
-#  international :boolean          default(FALSE), not null
 #  name          :string           not null
 #  name_en       :string           not null
 #  name_short    :string           not null
@@ -35,5 +34,9 @@ class CompetitionSeries < ApplicationRecord
     when :en then self[:name_short_en]
     else self[:name_short]
     end
+  end
+
+  def past_winners
+    iterations.order(:start_year).to_h { |iteration| [iteration.display_year, iteration.winner] }
   end
 end

@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
     t.string "name_en", null: false
     t.string "name_short", null: false
     t.string "name_short_en", null: false
+    t.integer "country", null: false
+    t.integer "prefecture", null: false
     t.string "hometown"
     t.string "hometown_en"
-    t.integer "country"
-    t.integer "prefecture"
     t.string "logo_file_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
     t.string "name_en", null: false
     t.string "name_short", null: false
     t.string "name_short_en", null: false
-    t.boolean "international", default: false, null: false
     t.integer "region"
     t.integer "country"
     t.datetime "created_at", precision: 6, null: false
@@ -50,11 +49,13 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
 
   create_table "competition_stages", force: :cascade do |t|
     t.integer "competition_id", null: false
-    t.string "name", null: false
-    t.string "name_en", null: false
     t.string "type", null: false
+    t.integer "order", null: false
+    t.string "name"
+    t.string "name_en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_id", "order"], name: "index_competition_stages_on_competition_id_and_order", unique: true
     t.index ["competition_id"], name: "index_competition_stages_on_competition_id"
   end
 
@@ -69,17 +70,20 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
 
   create_table "competitions", force: :cascade do |t|
     t.integer "series_id", null: false
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_short", null: false
+    t.string "name_short_en", null: false
     t.integer "start_year", null: false
-    t.integer "end_year", null: false
-    t.string "type", null: false
+    t.integer "end_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["series_id"], name: "index_competitions_on_series_id"
   end
 
   create_table "fixtures", force: :cascade do |t|
-    t.integer "competition_id", null: false
-    t.integer "stage_id"
+    t.integer "stage_id", null: false
+    t.string "type", null: false
     t.integer "order", null: false
     t.string "name"
     t.string "name_en"
@@ -87,8 +91,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
     t.string "name_short_en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["competition_id", "stage_id", "order"], name: "index_fixtures_on_competition_id_and_stage_id_and_order", unique: true
-    t.index ["competition_id"], name: "index_fixtures_on_competition_id"
+    t.index ["stage_id", "order"], name: "index_fixtures_on_stage_id_and_order", unique: true
     t.index ["stage_id"], name: "index_fixtures_on_stage_id"
   end
 
@@ -101,17 +104,18 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
     t.index ["team_id"], name: "index_group_teams_on_team_id"
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.integer "stage_id", null: false
+  create_table "league_groups", force: :cascade do |t|
+    t.integer "league_id", null: false
     t.string "name"
     t.string "name_en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["stage_id"], name: "index_groups_on_stage_id"
+    t.index ["league_id"], name: "index_league_groups_on_league_id"
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "fixture_id", null: false
+    t.integer "fixture_id"
+    t.integer "category"
     t.integer "home_team_id"
     t.integer "away_team_id"
     t.integer "venue_id"
@@ -119,6 +123,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
     t.integer "status"
     t.integer "home_score"
     t.integer "away_score"
+    t.integer "home_pk"
+    t.integer "away_pk"
     t.integer "winner_next_match_id"
     t.integer "loser_next_match_id"
     t.datetime "created_at", precision: 6, null: false
@@ -133,13 +139,11 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
 
   create_table "teams", force: :cascade do |t|
     t.integer "club_id", null: false
-    t.integer "main_league_id"
-    t.integer "start_year"
+    t.integer "start_year", null: false
     t.integer "end_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["club_id"], name: "index_teams_on_club_id"
-    t.index ["main_league_id"], name: "index_teams_on_main_league_id"
   end
 
   create_table "venues", force: :cascade do |t|
@@ -161,10 +165,9 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
   add_foreign_key "competition_teams", "teams"
   add_foreign_key "competitions", "competition_series", column: "series_id"
   add_foreign_key "fixtures", "competition_stages", column: "stage_id"
-  add_foreign_key "fixtures", "competitions"
   add_foreign_key "group_teams", "competition_teams", column: "team_id"
-  add_foreign_key "group_teams", "groups"
-  add_foreign_key "groups", "competition_stages", column: "stage_id"
+  add_foreign_key "group_teams", "league_groups", column: "group_id"
+  add_foreign_key "league_groups", "competition_stages", column: "league_id"
   add_foreign_key "matches", "fixtures"
   add_foreign_key "matches", "matches", column: "loser_next_match_id"
   add_foreign_key "matches", "matches", column: "winner_next_match_id"
@@ -172,5 +175,4 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
   add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "matches", "venues"
   add_foreign_key "teams", "clubs"
-  add_foreign_key "teams", "competitions", column: "main_league_id"
 end

@@ -23,4 +23,6 @@
 class CompetitionTeam < ApplicationRecord
   belongs_to :competition
   belongs_to :team
+
+  delegate :name, :short_name, :home_matches, :away_matches, to: :team
 end

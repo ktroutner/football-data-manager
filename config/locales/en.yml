@@ -3,7 +3,7 @@ en:
     name: FootballDataManager
     description: Manage and view data on football matches
   actions:
-      edit: Edit
+    edit: Edit
   date:
     formats:
       default: "%Y/%m/%d"
@@ -19,20 +19,9 @@ en:
     models:
       competition_series: Competitions
       competition: Competition
-      league: League
-      tournament: Tournament
-      friendly: Friendly
       fixture: Section
       match: Match
     attributes:
-      league:
-        name: "%{series_name} %{year} Season"
-      tournament:
-        name: "%{year} %{series_name}"
-      friendly:
-        name: "%{year} %{series_name}"
-      fixture:
-        name: "Section %{number}"
       match:
         home_score: Score (home)
         away_score: Score (away)
@@ -40,3 +29,7 @@ en:
     matches:
       edit:
         title: Edit Match
+    fixtures:
+      title: Fixture List
+    results:
+      title: Results
