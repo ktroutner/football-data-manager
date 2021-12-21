@@ -1,0 +1,27 @@
+<h1><%= I18n.t('pages.statistics.title') %></h1>
+<p><%= I18n.t('dictionary.goals_for') %></p>
+<ol>
+    <% @goals_for.each do |team, goals| %>
+        <li>
+            <p><%= team.name %>: <%= goals %></p>
+        </li>
+    <% end %>
+</ol>
+<br />
+<p><%= I18n.t('dictionary.goals_against') %></p>
+<ol>
+    <% @goals_against.each do |team, goals| %>
+        <li>
+            <p><%= team.name %>: <%= goals %></p>
+        </li>
+    <% end %>
+</ol>
+<br />
+<p><%= I18n.t('dictionary.goal_differential') %></p>
+<ol>
+    <% @goal_differential.each do |team, goals| %>
+        <li>
+            <p><%= team.name %>: <%= goals %></p>
+        </li>
+    <% end %>
+</ol>

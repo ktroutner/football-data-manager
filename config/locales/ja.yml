@@ -15,6 +15,10 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
       with_day_of_week: "%Y年%m月%d日(%a) %H:%M"
+  dictionary:
+    goals_for: 得点
+    goals_against: 失点
+    goal_differential: 得失点
   activerecord:
     models:
       competition_series: 大会一覧
@@ -33,3 +37,5 @@ ja:
       title: 節一覧
     results:
       title: 結果
+    statistics:
+      title: 統計
