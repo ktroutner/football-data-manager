@@ -21,8 +21,20 @@
 #  team_id         (team_id => teams.id)
 #
 class CompetitionTeam < ApplicationRecord
+  include TeamStatistics
+
   belongs_to :competition
   belongs_to :team
 
   delegate :name, :short_name, :home_matches, :away_matches, to: :team
+
+  # override TeamStatistics#home_matches
+  def home_matches(_section = nil)
+    team.home_matches.joins(:fixture).where(fixture: { stage: competition.stages })
+  end
+
+  # override TeamStatistics#away_matches
+  def away_matches(_section = nil)
+    team.away_matches.joins(:fixture).where(fixture: { stage: competition.stages })
+  end
 end
