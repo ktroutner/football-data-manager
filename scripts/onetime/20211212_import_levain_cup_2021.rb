@@ -55,13 +55,7 @@ group_stage = ybc_2021.stages.find_or_create_by!(
   name_en: 'Group Stage'
 )
 (1..6).each do |i|
-  group_stage.matchdays.find_or_create_by!(
-    order: i,
-    name: "第#{i}節",
-    name_en: "Matchday #{i}",
-    name_short: "第#{i}節",
-    name_short_en: "MD#{i}"
-  )
+  group_stage.matchdays.find_or_create_by!(order: i)
 end
 
 group_a = group_stage.groups.find_or_create_by!(name: 'Aグループ', name_en: 'A Group')

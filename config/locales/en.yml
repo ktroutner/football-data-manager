@@ -27,6 +27,9 @@ en:
       fixture: Section
       match: Match
     attributes:
+      matchday:
+        name: "Matchday %{number}"
+        short_name: "MD %{number}"
       match:
         home_score: Score (home)
         away_score: Score (away)

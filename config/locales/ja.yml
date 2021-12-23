@@ -27,6 +27,9 @@ ja:
       fixture: 節
       match: 試合
     attributes:
+      matchday:
+        name: "第%{number}節"
+        short_name: "第%{number}節"
       match:
         home_score: スコア（ホーム）
         away_score: スコア（アウェイ）

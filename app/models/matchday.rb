@@ -26,4 +26,14 @@
 #
 class Matchday < Fixture
   scope :section_n, ->(n) { where(order: ..(n.presence || Float::INFINITY)) }
+
+  # override Fixture#name
+  def name
+    super || I18n.t('activerecord.attributes.matchday.name', number: order)
+  end
+
+  # override Fixture#short_name
+  def short_name
+    super || I18n.t('activerecord.attributes.matchday.short_name', number: order)
+  end
 end
