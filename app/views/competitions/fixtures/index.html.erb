@@ -1,4 +1,14 @@
 <h1><%= @competition.name %></h1>
+<div>
+  <%= link_to 'Home', home_path %>
+  <%= ' > ' %>
+  <%= link_to I18n.t('activerecord.models.competition_series'), competition_series_list_path %>
+  <%= ' > ' %>
+  <%= link_to @competition.series.name, competition_series_path(@competition.series) %>
+  <%= ' > ' %>
+  <%= link_to @competition.name, competition_path(@competition) %>
+  <%= " > #{I18n.t('pages.fixtures.title')}" %>
+<div>
 <% if @competition.stages.count == 1 %>
     <ul>
         <% @competition.stages.first.matchdays.order(:order).each do |fixture| %>

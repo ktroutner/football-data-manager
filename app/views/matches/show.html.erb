@@ -1,4 +1,14 @@
 <h1><%= I18n.t('activerecord.models.match') %></h1>
+<div>
+  <%= link_to 'Home', home_path %>
+  <%= ' > ' %>
+  <%= link_to I18n.t('activerecord.models.competition_series'), competition_series_list_path %>
+  <%= ' > ' %>
+  <%= link_to @match.competition_series.name, competition_series_path(@match.competition_series) %>
+  <%= ' > ' %>
+  <%= link_to @match.competition.name, competition_path(@match.competition) %>
+  <%= " > #{@match.home_team.short_name} v. #{@match.away_team.short_name}" %>
+</div>
 <p>
     <%= @match.home_team.name %> <%= @match.display_score %> <%= @match.away_team.name %>
 </p>

@@ -1,4 +1,8 @@
 <h1><%= I18n.t('activerecord.models.competition_series') %></h1>
+<div>
+  <%= link_to 'Home', home_path %>
+  <%= " > #{I18n.t('activerecord.models.competition_series')}"%>
+<div>
 <ul>
     <% @competition_series.each do |series| %>
         <li>

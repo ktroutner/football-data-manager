@@ -26,6 +26,8 @@
 #
 class Fixture < ApplicationRecord
   belongs_to :stage, class_name: 'CompetitionStage', optional: true
+  has_one :competition, through: :stage
+  has_one :competition_series, through: :competition, source: :series
   has_many :matches, dependent: :destroy
 
   def name
