@@ -4,6 +4,7 @@ en:
     description: Manage and view data on football matches
   actions:
     edit: Edit
+    back: Back
   date:
     formats:
       default: "%Y/%m/%d"

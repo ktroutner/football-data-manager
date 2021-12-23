@@ -4,6 +4,7 @@ ja:
     description: サッカー試合のデータ管理ツール
   actions:
     edit: 編集
+    back: 戻る
   date:
     formats:
       default: "%Y/%m/%d"

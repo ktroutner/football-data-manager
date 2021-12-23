@@ -2,8 +2,6 @@
 <p><%= I18n.t('application.description') %></p>
 <ul>
     <li>
-        <a href='/competition_series'>
-            <p><%= I18n.t('activerecord.models.competition_series') %></p>
-        </a>
+        <%= link_to I18n.t('activerecord.models.competition_series'), competition_series_list_path %>
     </li>
 </ul>

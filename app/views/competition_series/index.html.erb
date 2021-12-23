@@ -6,10 +6,7 @@
 <ul>
     <% @competition_series.each do |series| %>
         <li>
-            <a href="/competition_series/<%= series.id %>">
-            <p>
-                <%= series.name %>
-            </p>
+            <%= link_to series.name, competition_series_path(series) %>
         </li>
     <% end %>
 </ul>

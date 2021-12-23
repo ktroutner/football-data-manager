@@ -9,43 +9,29 @@
   <%= link_to @competition.name, competition_path(@competition) %>
   <%= " > #{I18n.t('pages.fixtures.title')}" %>
 <div>
-<% if @competition.stages.count == 1 %>
-    <ul>
-        <% @competition.stages.first.matchdays.order(:order).each do |fixture| %>
-            <li>
-                <a href="/fixtures/<%= fixture.id %>">
-                    <p><%= fixture.name %></p>
-                </a>
-            </li>
-        <% end %>
-    </ul>
-<% else %>
-    <ul>
-        <% @competition.stages.each do |stage| %>
-            <li>
-                <p><%= stage.name %></p>
-                <% if stage.is_a?(LeagueStage) %>
-                    <ul>
-                        <% stage.matchdays.each do |matchday| %>
-                            <li>
-                                <a href="/fixtures/<%= matchday.id%>">
-                                    <p><%= matchday.name %></p>
-                                </a>
-                            </li>
-                        <% end %>
-                    </ul>
-                <% else %>
-                    <ul>
-                        <% stage.rounds.each do |round| %>
-                            <li>
-                                <a href="/fixtures/<%= round.id %>">
-                                    <p><%= round.name %>
-                                </a>
-                            </li>
-                        <% end %>
-                    </ul>
-                <% end %>
-            </li>
-        <% end %>
-    </ul>
-<% end %>
+<ul>
+    <% @competition.stages.each do |stage| %>
+        <li>
+            <% if @competition.stages.count > 1%>
+                <%= stage.name %>
+            <% end %>
+            <% if stage.is_a?(LeagueStage) %>
+                <ul>
+                    <% stage.matchdays.each do |matchday| %>
+                        <li>
+                            <%= link_to matchday.name, fixture_path(matchday) %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% else %>
+                <ul>
+                    <% stage.rounds.each do |round| %>
+                        <li>
+                            <%= link_to round.name, fixture_path(round) %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </li>
+    <% end %>
+</ul>

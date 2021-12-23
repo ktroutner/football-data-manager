@@ -9,18 +9,12 @@
 <div>
 <ul>
     <li>
-        <a href="/competitions/<%= @competition.id %>/fixtures">
-            <p><%= I18n.t('pages.fixtures.title') %></p>
-        </a>
+        <%= link_to I18n.t('pages.fixtures.title'), competition_fixtures_path(@competition) %>
     </li>
     <li>
-        <a href="/competitions/<%= @competition.id %>/results">
-            <p><%= I18n.t('pages.results.title') %></p>
-        </a>
+        <%= link_to I18n.t('pages.results.title'), competition_results_path(@competition) %>
     </li>
     <li>
-        <a href="/competitions/<%= @competition.id %>/statistics">
-            <p><%= I18n.t('pages.statistics.title') %></p>
-        </a>
+        <%= link_to I18n.t('pages.statistics.title'), competition_statistics_path(@competition) %>
     </li>
 </ul>

@@ -1,5 +1,4 @@
 <h1><%= I18n.t('pages.matches.edit.title') %></h1>
-
 <%= form_with model: @match do |form| %>
     <div>
         <%= form.label :home_score %>
@@ -17,3 +16,4 @@
         <%= form.submit %>
     </div>
 <% end %>
+<%= link_to I18n.t('actions.back'), match_path(@match) %>

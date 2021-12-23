@@ -13,7 +13,7 @@
 <ol>
     <% @goals_for.each do |team, goals| %>
         <li>
-            <p><%= team.name %>: <%= goals %></p>
+            <%= "#{team.name}: #{goals}" %>
         </li>
     <% end %>
 </ol>
@@ -22,7 +22,7 @@
 <ol>
     <% @goals_against.each do |team, goals| %>
         <li>
-            <p><%= team.name %>: <%= goals %></p>
+            <%= "#{team.name}: #{goals}" %>
         </li>
     <% end %>
 </ol>
@@ -31,7 +31,7 @@
 <ol>
     <% @goal_differential.each do |team, goals| %>
         <li>
-            <p><%= team.name %>: <%= goals %></p>
+            <%= "#{team.name}: #{goals}" %>
         </li>
     <% end %>
 </ol>

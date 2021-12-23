@@ -8,10 +8,7 @@
 <ul>
     <% @competition_series.iterations.order(:start_year).each do |iteration| %>
         <li>
-            <a href="/competitions/<%= iteration.id %>">
-            <p>
-                <%= iteration.name %>
-            </p>
+            <%= link_to iteration.name, competition_path(iteration) %>
         </li>
     <% end %>
 </ul>
