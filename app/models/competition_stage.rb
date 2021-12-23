@@ -24,6 +24,7 @@
 #
 class CompetitionStage < ApplicationRecord
   belongs_to :competition
+  has_many :fixtures, foreign_key: :stage, inverse_of: :stage, dependent: :destroy
 
   def name
     case I18n.locale

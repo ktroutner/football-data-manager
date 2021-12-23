@@ -46,6 +46,9 @@ class Match < ApplicationRecord
   belongs_to :venue
   belongs_to :winner_next_match, class_name: 'Match', optional: true
   belongs_to :loser_next_match, class_name: 'Match', optional: true
+  has_one :stage, through: :fixture
+  has_one :competition, through: :stage
+  has_one :competition_series, through: :competition, source: :series
   has_many :winner_previous_matches, class_name: 'Match', dependent: :nullify
   has_many :loser_previous_matches, class_name: 'Match', dependent: :nullify
 

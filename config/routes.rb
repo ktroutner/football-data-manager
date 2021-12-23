@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get    'competitions/:id', to: 'competitions#show', as: :competition
   get    'competitions/:id/fixtures', to: 'competitions/fixtures#index', as: :competition_fixtures
   get    'competitions/:id/results', to: 'competitions/results#index', as: :competition_results
+  get    'competitions/:id/statistics', to: 'competitions/statistics#index', as: :competition_statistics
   get    'fixtures/:id', to: 'fixtures#show', as: :fixture
   get    'matches/:id', to: 'matches#show', as: :match
   get    'matches/:id/edit', to: 'matches#edit', as: :edit_match

@@ -1,0 +1,37 @@
+<h1><%= I18n.t('pages.statistics.title') %></h1>
+<div>
+  <%= link_to 'Home', home_path %>
+  <%= ' > ' %>
+  <%= link_to I18n.t('activerecord.models.competition_series'), competition_series_list_path %>
+  <%= ' > ' %>
+  <%= link_to @competition.series.name, competition_series_path(@competition.series) %>
+  <%= ' > ' %>
+  <%= link_to @competition.name, competition_path(@competition) %>
+  <%= " > #{I18n.t('pages.statistics.title')}" %>
+<div>
+<p><%= I18n.t('dictionary.goals_for') %></p>
+<ol>
+    <% @goals_for.each do |team, goals| %>
+        <li>
+            <%= "#{team.name}: #{goals}" %>
+        </li>
+    <% end %>
+</ol>
+<br />
+<p><%= I18n.t('dictionary.goals_against') %></p>
+<ol>
+    <% @goals_against.each do |team, goals| %>
+        <li>
+            <%= "#{team.name}: #{goals}" %>
+        </li>
+    <% end %>
+</ol>
+<br />
+<p><%= I18n.t('dictionary.goal_differential') %></p>
+<ol>
+    <% @goal_differential.each do |team, goals| %>
+        <li>
+            <%= "#{team.name}: #{goals}" %>
+        </li>
+    <% end %>
+</ol>

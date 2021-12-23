@@ -4,6 +4,7 @@ ja:
     description: サッカー試合のデータ管理ツール
   actions:
     edit: 編集
+    back: 戻る
   date:
     formats:
       default: "%Y/%m/%d"
@@ -15,6 +16,10 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
       with_day_of_week: "%Y年%m月%d日(%a) %H:%M"
+  dictionary:
+    goals_for: 得点
+    goals_against: 失点
+    goal_differential: 得失点
   activerecord:
     models:
       competition_series: 大会一覧
@@ -22,6 +27,9 @@ ja:
       fixture: 節
       match: 試合
     attributes:
+      matchday:
+        name: "第%{number}節"
+        short_name: "第%{number}節"
       match:
         home_score: スコア（ホーム）
         away_score: スコア（アウェイ）
@@ -33,3 +41,5 @@ ja:
       title: 節一覧
     results:
       title: 結果
+    statistics:
+      title: 統計

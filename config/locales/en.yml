@@ -4,6 +4,7 @@ en:
     description: Manage and view data on football matches
   actions:
     edit: Edit
+    back: Back
   date:
     formats:
       default: "%Y/%m/%d"
@@ -15,6 +16,10 @@ en:
       long: "%A, %B %d, %Y %H:%M:%S %z"
       short: "%y/%m/%d %H:%M"
       with_day_of_week: "%A, %B %d, %Y %H:%M"
+  dictionary:
+    goals_for: Goals For
+    goals_against: Goals Against
+    goal_differential: Goal Differential
   activerecord:
     models:
       competition_series: Competitions
@@ -22,6 +27,9 @@ en:
       fixture: Section
       match: Match
     attributes:
+      matchday:
+        name: "Matchday %{number}"
+        short_name: "MD %{number}"
       match:
         home_score: Score (home)
         away_score: Score (away)
@@ -33,3 +41,5 @@ en:
       title: Fixture List
     results:
       title: Results
+    statistics:
+      title: Statistics

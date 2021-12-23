@@ -1,13 +1,20 @@
 <h1><%= @competition.name %></h1>
+<div>
+  <%= link_to 'Home', home_path %>
+  <%= ' > ' %>
+  <%= link_to I18n.t('activerecord.models.competition_series'), competition_series_list_path %>
+  <%= ' > ' %>
+  <%= link_to @competition.series.name, competition_series_path(@competition.series) %>
+  <%= " > #{@competition.name}" %>
+<div>
 <ul>
     <li>
-        <a href="/competitions/<%= @competition.id %>/fixtures">
-            <p><%= I18n.t('pages.fixtures.title') %></p>
-        </a>
+        <%= link_to I18n.t('pages.fixtures.title'), competition_fixtures_path(@competition) %>
     </li>
     <li>
-        <a href="/competitions/<%= @competition.id %>/results">
-            <p><%= I18n.t('pages.results.title') %></p>
-        </a>
+        <%= link_to I18n.t('pages.results.title'), competition_results_path(@competition) %>
+    </li>
+    <li>
+        <%= link_to I18n.t('pages.statistics.title'), competition_statistics_path(@competition) %>
     </li>
 </ul>

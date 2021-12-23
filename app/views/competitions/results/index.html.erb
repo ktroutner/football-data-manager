@@ -1,50 +1,52 @@
 <h1><%= I18n.t('pages.results.title') %></h1>
+<div>
+  <%= link_to 'Home', home_path %>
+  <%= ' > ' %>
+  <%= link_to I18n.t('activerecord.models.competition_series'), competition_series_list_path %>
+  <%= ' > ' %>
+  <%= link_to @competition.series.name, competition_series_path(@competition.series) %>
+  <%= ' > ' %>
+  <%= link_to @competition.name, competition_path(@competition) %>
+  <%= " > #{I18n.t('pages.results.title')}" %>
+<div>
 <p> <%= @winner.name %> 優勝おめでとうございます！</p>
-<% if @competition.stages.count == 1 %>
-    <ol>
-        <% @competition.stages.first.groups.first.standings.each do |team| %>
-            <li>
-                <p><%= team.name %></p>
-            </li>
-        <% end %>
-    </ol>
-<% else %>
-    <ul>
-        <% @competition.stages.each do |stage| %>
-            <li>
-                <p><%= stage.name %></p>
-                <% if stage.is_a?(LeagueStage) %>
-                    <ul>
-                        <% stage.groups.each do |group| %>
-                            <li>
-                                <p><%= group.name %></p>
-                                <ol>
-                                    <% group.standings.each do |team| %>
-                                        <li>
-                                            <p><%= team.name %></p>
-                                        </li>
-                                    <% end %>
-                                </ol>
-                            </li>
-                        <% end %>
-                    </ul>
-                <% else %>
-                    <ul>
-                        <% stage.rounds.each do |round| %>
-                            <li>
-                                <p><%= round.name %></p>
-                                <ul>
-                                    <% round.winners.each do |team| %>
-                                        <li>
-                                            <p><%= team.name %></p>
-                                        </li>
-                                    <% end %>
-                                </ul>
-                            </li>
-                        <% end %>
-                    </ul>
-                <% end %>
-            </li>
-        <% end %>
-    </ul>
-<% end %>
+<ul>
+    <% @competition.stages.each do |stage| %>
+        <li>
+            <% if @competition.stages.count > 1%>
+                <%= stage.name %>
+            <% end %>
+            <% if stage.is_a?(LeagueStage) %>
+                <ul>
+                    <% stage.groups.each do |group| %>
+                        <li>
+                            <%= group.name %>
+                            <ol>
+                                <% group.standings.each do |team| %>
+                                    <li>
+                                        <%= team.name %>
+                                    </li>
+                                <% end %>
+                            </ol>
+                        </li>
+                    <% end %>
+                </ul>
+            <% else %>
+                <ul>
+                    <% stage.rounds.each do |round| %>
+                        <li>
+                            <%= round.name %>
+                            <ul>
+                                <% round.winners.each do |team| %>
+                                    <li>
+                                        <%= team.name %>
+                                    </li>
+                                <% end %>
+                            </ul>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </li>
+    <% end %>
+</ul>
