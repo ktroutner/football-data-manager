@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
     t.string "name"
     t.string "name_en"
     t.string "code", null: false
+    t.integer "category", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["club_id"], name: "index_club_colors_on_club_id"

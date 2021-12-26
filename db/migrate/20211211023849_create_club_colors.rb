@@ -8,6 +8,7 @@ class CreateClubColors < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :name_en
       t.string :code, null: false
+      t.integer :category, null: false
 
       t.timestamps
     end

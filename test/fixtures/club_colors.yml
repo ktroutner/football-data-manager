@@ -3,6 +3,7 @@
 # Table name: club_colors
 #
 #  id         :integer          not null, primary key
+#  category   :integer          not null
 #  code       :string           not null
 #  name       :string
 #  name_en    :string

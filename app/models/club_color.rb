@@ -5,6 +5,7 @@
 # Table name: club_colors
 #
 #  id         :integer          not null, primary key
+#  category   :integer          not null
 #  code       :string           not null
 #  name       :string
 #  name_en    :string
@@ -22,4 +23,6 @@
 #
 class ClubColor < ApplicationRecord
   belongs_to :club
+
+  enum category: { primary: 0, secondary: 1, highlight: 2 }, _suffix: 'color'
 end
