@@ -25,8 +25,15 @@ class CompetitionTeam < ApplicationRecord
 
   belongs_to :competition
   belongs_to :team
+  has_many :group_teams, foreign_key: :team_id, inverse_of: :competition_team, dependent: :destroy
 
-  delegate :name, :short_name, :home_matches, :away_matches, to: :team
+  delegate(
+    :name,
+    :short_name,
+    :home_matches,
+    :away_matches,
+    to: :team
+)
 
   # override TeamStatistics#home_matches
   def home_matches(_section = nil)

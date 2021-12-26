@@ -6,6 +6,11 @@ module Competitions
     # GET /competitions/:id/results
     def index
       @winner = @competition.winner
+
+      first_stage = @competition.stages.first
+      return unless first_stage.is_a?(LeagueStage)
+
+      @points_transitions = first_stage.points_transitions
     end
   end
 end

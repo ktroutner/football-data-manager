@@ -40,4 +40,38 @@ class LeagueStage < CompetitionStage
 
     winners.values.flatten.first
   end
+
+  def goals_for_transitions
+    statistics_hash(:goals_for)
+  end
+
+  def goals_against_transitions
+    statistics_hash(:goals_against)
+  end
+
+  def goal_differential_transitions
+    statistics_hash(:goal_differential)
+  end
+
+  def points_transitions
+    statistics_hash(:points)
+  end
+
+  private
+
+  def statistics_hash(method)
+    groups.index_with do |group|
+      group.group_teams.map do |team|
+        {
+          team: {
+            name: team.name,
+            color: team.primary_color.code
+          },
+          data: matchdays.map do |matchday|
+            { x: matchday.order, y: team.send(method, matchday.order) }
+          end
+        }
+      end
+    end
+  end
 end

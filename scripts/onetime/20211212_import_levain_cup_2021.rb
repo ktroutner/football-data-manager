@@ -61,22 +61,22 @@ end
 group_a = group_stage.groups.find_or_create_by!(name: 'Aグループ', name_en: 'A Group')
 group_a_teams.each do |team|
   competition_team = ybc_2021.competition_teams.find_by(team: team)
-  group_a.group_teams.find_or_create_by!(team: competition_team)
+  group_a.group_teams.find_or_create_by!(competition_team: competition_team)
 end
 group_b = group_stage.groups.find_or_create_by!(name: 'Bグループ', name_en: 'B Group')
 group_b_teams.each do |team|
   competition_team = ybc_2021.competition_teams.find_by(team: team)
-  group_b.group_teams.find_or_create_by!(team: competition_team)
+  group_b.group_teams.find_or_create_by!(competition_team: competition_team)
 end
 group_c = group_stage.groups.find_or_create_by!(name: 'Cグループ', name_en: 'C Group')
 group_c_teams.each do |team|
   competition_team = ybc_2021.competition_teams.find_by(team: team)
-  group_c.group_teams.find_or_create_by!(team: competition_team)
+  group_c.group_teams.find_or_create_by!(competition_team: competition_team)
 end
 group_d = group_stage.groups.find_or_create_by!(name: 'Dグループ', name_en: 'D Group')
 group_d_teams.each do |team|
   competition_team = ybc_2021.competition_teams.find_by(team: team)
-  group_d.group_teams.find_or_create_by!(team: competition_team)
+  group_d.group_teams.find_or_create_by!(competition_team: competition_team)
 end
 
 playoff_stage = ybc_2021.stages.find_or_create_by!(

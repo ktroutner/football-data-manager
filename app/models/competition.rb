@@ -54,4 +54,22 @@ class Competition < ApplicationRecord
   def winner
     stages.order(:order).last.winner
   end
+
+  def goals_for_ranking
+    statistics_ranking(:goals_for)
+  end
+
+  def goals_against_ranking
+    statistics_ranking(:goals_against)
+  end
+
+  def goal_differential_ranking
+    statistics_ranking(:goal_differential)
+  end
+
+  private
+
+  def statistics_ranking(method)
+    competition_teams.index_with(&method).sort_by { |_, statistic| -statistic }
+  end
 end
