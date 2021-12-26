@@ -27,6 +27,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'react-rails', '~> 2.6'
+
 # Internationalization
 gem 'rails-i18n'
 
