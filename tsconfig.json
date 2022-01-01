@@ -10,6 +10,7 @@
     "target": "es5",
     "jsx": "react",
     "noEmit": true,
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true
   },
   "exclude": [

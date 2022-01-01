@@ -23,34 +23,29 @@ type Props = {
 const TeamStatisticsGraph = (props: Props) => {
   const options = {
     chart: {
-      foreColor: "#6D6D6D"
+      foreColor: "#6D6D6D",
     },
-    colors: props.statistics.map((statistic) => { return statistic.team.color }),
+    colors: props.statistics.map((statistic) => {
+      return statistic.team.color
+    }),
     grid: {
-       borderColor: "#6D6D6D"
+      borderColor: "#6D6D6D",
     },
     xaxis: {
-      type: "category"
-    }
+      type: "category",
+    } as ApexXAxis,
   }
 
   const series = props.statistics.map((statistic) => {
-    return (
-      {
-        name: statistic.team.name,
-        data: statistic.data
-      }
-    )
+    return {
+      name: statistic.team.name,
+      data: statistic.data,
+    }
   })
 
   return (
     <>
-      <Chart
-        options={options}
-        series={series}
-        type="line"
-        height="380"
-      />
+      <Chart options={options} series={series} type="line" height="380" />
     </>
   )
 }
