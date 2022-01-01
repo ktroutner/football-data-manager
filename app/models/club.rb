@@ -20,6 +20,12 @@
 class Club < ApplicationRecord
   has_many :teams, dependent: :destroy
   has_many :colors, class_name: 'ClubColor', dependent: :destroy
+  has_one :primary_color, -> { ClubColor.primary },
+          class_name: 'ClubColor', inverse_of: :club, dependent: :destroy
+  has_many :secondary_colors, -> { ClubColor.secondary },
+           class_name: 'ClubColor', inverse_of: :club, dependent: :destroy
+  has_many :highlight_colors, -> { ClubColor.highlight },
+           class_name: 'ClubColor', inverse_of: :club, dependent: :destroy
 
   enum country: Country::VALUES
   composed_of :country, mapping: %w[country country]

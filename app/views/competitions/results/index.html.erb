@@ -27,6 +27,9 @@
                                         <%= team.name %>
                                     </li>
                                 <% end %>
+                                <% if @points_transitions %>
+                                    <%= react_component("TeamStatisticsGraph", { statistics: @points_transitions[group] }) %>
+                                <% end %>
                             </ol>
                         </li>
                     <% end %>

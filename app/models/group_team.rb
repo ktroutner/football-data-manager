@@ -24,9 +24,18 @@ class GroupTeam < ApplicationRecord
   include TeamStatistics
 
   belongs_to :group, class_name: 'LeagueGroup'
-  belongs_to :team, class_name: 'CompetitionTeam'
+  belongs_to :competition_team, foreign_key: :team_id, inverse_of: :group_teams
+  has_one :team, through: :competition_team
 
-  delegate :name, :short_name, to: :team
+  delegate(
+    :name,
+    :short_name,
+    :colors,
+    :primary_color,
+    :secondary_colors,
+    :highlight_colors,
+    to: :team
+  )
 
   # override TeamStatistics#home_matches
   def home_matches(section = nil)

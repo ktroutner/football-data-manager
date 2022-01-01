@@ -17,6 +17,9 @@
         </li>
     <% end %>
 </ol>
+<% if @goals_for_transitions %>
+    <%= react_component("TeamStatisticsGraph", { statistics: @goals_for_transitions }) %>
+<% end %>
 <br />
 <p><%= I18n.t('dictionary.goals_against') %></p>
 <ol>
@@ -26,6 +29,9 @@
         </li>
     <% end %>
 </ol>
+<% if @goals_against_transitions %>
+    <%= react_component("TeamStatisticsGraph", { statistics: @goals_against_transitions }) %>
+<% end %>
 <br />
 <p><%= I18n.t('dictionary.goal_differential') %></p>
 <ol>
@@ -35,3 +41,6 @@
         </li>
     <% end %>
 </ol>
+<% if @goal_differential_transitions %>
+    <%= react_component("TeamStatisticsGraph", { statistics: @goal_differential_transitions }) %>
+<% end %>

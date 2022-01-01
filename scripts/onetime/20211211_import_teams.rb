@@ -40,5 +40,5 @@ CSV.parse(data) do |row|
   )
   team = club.teams.find_or_create_by!(start_year: 2021, end_year: 2021)
   competition_team = j1_2021.competition_teams.find_or_create_by!(team: team)
-  j1_2021_league.group_teams.find_or_create_by!(team: competition_team)
+  j1_2021_league.group_teams.find_or_create_by!(competition_team: competition_team)
 end

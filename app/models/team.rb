@@ -27,7 +27,15 @@ class Team < ApplicationRecord
   has_many :home_matches, class_name: 'Match', foreign_key: :home_team_id, inverse_of: :home_team, dependent: :nullify
   has_many :away_matches, class_name: 'Match', foreign_key: :away_team_id, inverse_of: :away_team, dependent: :nullify
 
-  delegate :name, :short_name, to: :club
+  delegate(
+    :name,
+    :short_name,
+    :colors,
+    :primary_color,
+    :secondary_colors,
+    :highlight_colors,
+    to: :club
+  )
 
   def display_year
     return start_year.to_s if end_year.nil? || end_year == start_year
