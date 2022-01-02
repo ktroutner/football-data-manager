@@ -33,7 +33,7 @@ class CompetitionTeam < ApplicationRecord
     :home_matches,
     :away_matches,
     to: :team
-)
+  )
 
   # override TeamStatistics#home_matches
   def home_matches(_section = nil)
