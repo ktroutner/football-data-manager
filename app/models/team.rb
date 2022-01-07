@@ -26,6 +26,16 @@ class Team < ApplicationRecord
   has_many :competitions, through: :competition_teams
   has_many :home_matches, class_name: 'Match', foreign_key: :home_team_id, inverse_of: :home_team, dependent: :nullify
   has_many :away_matches, class_name: 'Match', foreign_key: :away_team_id, inverse_of: :away_team, dependent: :nullify
+  has_many :team_players, dependent: :destroy
+  has_many :players, -> { TeamPlayer.current }, class_name: 'Player', through: :team_players, source: :team
+  has_many :team_players, dependent: :destroy
+  has_many :players, through: :team_players
+  has_many :former_team_players, -> { TeamPlayer.former },
+           class_name: 'TeamPlayer', foreign_key: :team_id, inverse_of: :team, dependent: :destroy
+  has_many :former_players, class_name: 'Player', through: :former_team_players, source: :player
+  has_many :current_team_players, -> { TeamPlayer.current },
+           class_name: 'TeamPlayer', foreign_key: :team_id, inverse_of: :team, dependent: :destroy
+  has_many :current_players, class_name: 'Player', through: :current_team_players, source: :player
 
   delegate(
     :name,
