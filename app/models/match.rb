@@ -40,10 +40,10 @@
 #  winner_next_match_id  (winner_next_match_id => matches.id)
 #
 class Match < ApplicationRecord
-  belongs_to :fixture
+  belongs_to :fixture, optional: true
   belongs_to :home_team, class_name: 'Team', optional: true
   belongs_to :away_team, class_name: 'Team', optional: true
-  belongs_to :venue
+  belongs_to :venue, optional: true
   belongs_to :winner_next_match, class_name: 'Match', optional: true
   belongs_to :loser_next_match, class_name: 'Match', optional: true
   has_one :stage, through: :fixture

@@ -50,7 +50,7 @@
     "semi": false
   },
   "lint-staged": {
-    "*.rb": "bundle exec rubocop -A",
+    "*.rb": "bundle exec rubocop -a --force-exclusion",
     "*.{js,ts,tsx}": "eslint --cache --fix",
     "*.{ts,tsx}": "bash -c tsc",
     "*.{js,ts,tsx,json}": "prettier --write"

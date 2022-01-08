@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_01_08_004029) do
     t.string "name_short", null: false
     t.string "name_short_en", null: false
     t.integer "country", null: false
-    t.integer "prefecture", null: false
+    t.integer "prefecture"
     t.string "hometown"
     t.string "hometown_en"
     t.string "logo_file_path"
@@ -141,9 +141,9 @@ ActiveRecord::Schema.define(version: 2022_01_08_004029) do
   create_table "players", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_en", null: false
-    t.string "name_kana", null: false
+    t.string "name_kana"
     t.integer "country", null: false
-    t.integer "prefecture", null: false
+    t.integer "prefecture"
     t.integer "position", null: false
     t.date "date_of_birth"
     t.integer "height"
@@ -156,9 +156,9 @@ ActiveRecord::Schema.define(version: 2022_01_08_004029) do
   create_table "staffs", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_en", null: false
-    t.string "name_kana", null: false
+    t.string "name_kana"
     t.integer "country", null: false
-    t.integer "prefecture", null: false
+    t.integer "prefecture"
     t.date "date_of_birth"
     t.integer "player_id"
     t.datetime "created_at", precision: 6, null: false
@@ -169,12 +169,12 @@ ActiveRecord::Schema.define(version: 2022_01_08_004029) do
   create_table "team_players", force: :cascade do |t|
     t.integer "team_id", null: false
     t.integer "player_id", null: false
-    t.integer "position"
-    t.integer "number"
+    t.integer "position", null: false
+    t.integer "number", null: false
     t.date "joined_on", null: false
     t.date "left_on"
-    t.integer "acquisition_type"
-    t.boolean "is_on_loan"
+    t.integer "acquisition_type", default: 1, null: false
+    t.boolean "is_on_loan", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["player_id"], name: "index_team_players_on_player_id"
@@ -208,9 +208,9 @@ ActiveRecord::Schema.define(version: 2022_01_08_004029) do
     t.string "name_short", null: false
     t.string "name_short_en", null: false
     t.integer "country", null: false
-    t.integer "prefecture", null: false
-    t.string "city", null: false
-    t.string "city_en", null: false
+    t.integer "prefecture"
+    t.string "city"
+    t.string "city_en"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

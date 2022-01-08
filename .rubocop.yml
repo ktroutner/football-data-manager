@@ -2,6 +2,8 @@ require: rubocop-rails
 
 AllCops:
   NewCops: enable
+  Excludes:
+    - db/schema.rb
 
 Style/EmptyMethod:
   Enabled: false

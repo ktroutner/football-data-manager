@@ -3,12 +3,12 @@
 # Table name: team_players
 #
 #  id               :integer          not null, primary key
-#  acquisition_type :integer
-#  is_on_loan       :boolean
+#  acquisition_type :integer          default("transfer"), not null
+#  is_on_loan       :boolean          default(FALSE), not null
 #  joined_on        :date             not null
 #  left_on          :date
-#  number           :integer
-#  position         :integer
+#  number           :integer          not null
+#  position         :integer          not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  player_id        :integer          not null

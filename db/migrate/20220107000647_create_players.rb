@@ -6,9 +6,9 @@ class CreatePlayers < ActiveRecord::Migration[6.1]
     create_table :players do |t|
       t.string :name, null: false
       t.string :name_en, null: false
-      t.string :name_kana, null: false
+      t.string :name_kana
       t.integer :country, null: false
-      t.integer :prefecture, null: false
+      t.integer :prefecture
       t.integer :position, null: false
       t.date :date_of_birth
       t.integer :height
