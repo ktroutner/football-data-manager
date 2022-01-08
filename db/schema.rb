@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_11_032254) do
+ActiveRecord::Schema.define(version: 2022_01_08_004029) do
 
   create_table "club_colors", force: :cascade do |t|
     t.integer "club_id", null: false
@@ -138,6 +138,61 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
     t.index ["winner_next_match_id"], name: "index_matches_on_winner_next_match_id"
   end
 
+  create_table "players", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_kana", null: false
+    t.integer "country", null: false
+    t.integer "prefecture", null: false
+    t.integer "position", null: false
+    t.date "date_of_birth"
+    t.integer "height"
+    t.integer "footedness"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_en", null: false
+    t.string "name_kana", null: false
+    t.integer "country", null: false
+    t.integer "prefecture", null: false
+    t.date "date_of_birth"
+    t.integer "player_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_staffs_on_player_id"
+  end
+
+  create_table "team_players", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "player_id", null: false
+    t.integer "position"
+    t.integer "number"
+    t.date "joined_on", null: false
+    t.date "left_on"
+    t.integer "acquisition_type"
+    t.boolean "is_on_loan"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_team_players_on_player_id"
+    t.index ["team_id"], name: "index_team_players_on_team_id"
+  end
+
+  create_table "team_staffs", force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "staff_id", null: false
+    t.integer "position"
+    t.date "joined_on", null: false
+    t.date "left_on"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_id"], name: "index_team_staffs_on_staff_id"
+    t.index ["team_id"], name: "index_team_staffs_on_team_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.integer "club_id", null: false
     t.integer "start_year", null: false
@@ -175,5 +230,10 @@ ActiveRecord::Schema.define(version: 2021_12_11_032254) do
   add_foreign_key "matches", "teams", column: "away_team_id"
   add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "matches", "venues"
+  add_foreign_key "staffs", "players"
+  add_foreign_key "team_players", "players"
+  add_foreign_key "team_players", "teams"
+  add_foreign_key "team_staffs", "staffs"
+  add_foreign_key "team_staffs", "teams"
   add_foreign_key "teams", "clubs"
 end
