@@ -36,6 +36,14 @@ class Team < ApplicationRecord
   has_many :current_team_players, -> { TeamPlayer.current },
            class_name: 'TeamPlayer', foreign_key: :team_id, inverse_of: :team, dependent: :destroy
   has_many :current_players, class_name: 'Player', through: :current_team_players, source: :player
+  has_many :team_staffs, dependent: :destroy
+  has_many :staffs, through: :team_staffs
+  has_many :former_team_staffs, -> { TeamStaff.former },
+           class_name: 'TeamStaff', foreign_key: :team_id, inverse_of: :team, dependent: :destroy
+  has_many :former_staffs, class_name: 'Player', through: :former_team_staffs, source: :staff
+  has_many :current_team_staffs, -> { TeamStaff.current },
+           class_name: 'TeamStaff', foreign_key: :team_id, inverse_of: :team, dependent: :destroy
+  has_many :current_staffs, class_name: 'Staff', through: :current_team_staffs, source: :staff
 
   delegate(
     :name,
