@@ -9,7 +9,7 @@ class CreateClubs < ActiveRecord::Migration[6.1]
       t.string :name_short, null: false
       t.string :name_short_en, null: false
       t.integer :country, null: false
-      t.integer :prefecture, null: false
+      t.integer :prefecture
       t.string :hometown
       t.string :hometown_en
       t.string :logo_file_path

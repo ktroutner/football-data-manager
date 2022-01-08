@@ -9,9 +9,9 @@
 #  height        :integer
 #  name          :string           not null
 #  name_en       :string           not null
-#  name_kana     :string           not null
+#  name_kana     :string
 #  position      :integer          not null
-#  prefecture    :integer          not null
+#  prefecture    :integer
 #  status        :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

@@ -9,8 +9,8 @@
 #  date_of_birth :date
 #  name          :string           not null
 #  name_en       :string           not null
-#  name_kana     :string           not null
-#  prefecture    :integer          not null
+#  name_kana     :string
+#  prefecture    :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  player_id     :integer
@@ -32,7 +32,7 @@ class Staff < ApplicationRecord
   has_one :current_team_staff, -> { TeamStaff.current },
           class_name: 'TeamStaff', foreign_key: :staff_id, inverse_of: :staff, dependent: :destroy
   has_one :current_team, class_name: 'Team', through: :current_team_staff, source: :team
-  belongs_to :player
+  belongs_to :player, optional: true
 
   enum country: Country::VALUES
   composed_of :country, mapping: %w[country country]

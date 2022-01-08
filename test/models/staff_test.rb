@@ -9,8 +9,8 @@
 #  date_of_birth :date
 #  name          :string           not null
 #  name_en       :string           not null
-#  name_kana     :string           not null
-#  prefecture    :integer          not null
+#  name_kana     :string
+#  prefecture    :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  player_id     :integer

@@ -13,7 +13,7 @@
 #  name_en        :string           not null
 #  name_short     :string           not null
 #  name_short_en  :string           not null
-#  prefecture     :integer          not null
+#  prefecture     :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
