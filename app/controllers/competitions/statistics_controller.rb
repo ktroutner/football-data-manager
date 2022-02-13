@@ -22,9 +22,9 @@ module Competitions
     end
 
     def league_statistics(league)
-      @goals_for_transitions = league.goals_for_transitions
-      @goals_against_transitions = league.goals_against_transitions
-      @goal_differential_transitions = league.goal_differential_transitions
+      @goals_for_transitions = league.goals_for_transitions[league.groups.first]
+      @goals_against_transitions = league.goals_against_transitions[league.groups.first]
+      @goal_differential_transitions = league.goal_differential_transitions[league.groups.first]
     end
   end
 end
