@@ -33,6 +33,16 @@ ja:
       match:
         home_score: スコア（ホーム）
         away_score: スコア（アウェイ）
+        status: ステータス
+  enums:
+    match:
+      status:
+        not_started: 試合前
+        in_progress: 試合中
+        halftime: ハーフタイム
+        complete: 試合終了
+        stopped: 試合中断
+        postponed: 試合中止
   pages:
     matches:
       edit:
