@@ -14,7 +14,7 @@ class MatchesController < ApplicationController
 
   # PATCH /matches/:id/edit
   def update
-    @match.update!(score_params)
+    @match.update!(match_params)
     redirect_to @match
   end
 
@@ -24,7 +24,7 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
   end
 
-  def score_params
-    params.require(:match).permit(:home_score, :away_score)
+  def match_params
+    params.require(:match).permit(:home_score, :away_score, :status)
   end
 end

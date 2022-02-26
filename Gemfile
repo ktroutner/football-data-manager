@@ -31,6 +31,7 @@ gem 'react-rails', '~> 2.6'
 
 # Internationalization
 gem 'rails-i18n'
+gem 'enum_help'
 
 # Code format check
 gem 'rubocop', require: false

@@ -57,10 +57,8 @@ class Match < ApplicationRecord
   enum status: { not_started: 0, in_progress: 1, halftime: 2, complete: 3, stopped: 4, postponed: 5 },
        _prefix: true
 
-  def display_score
-    return 'v.' if status_not_started? || status_postponed? || home_score.nil? || away_score.nil?
-
-    "#{home_score} - #{away_score}"
+  def score_displayable?
+    !status_not_started? && home_score.present? && away_score.present?
   end
 
   def winner

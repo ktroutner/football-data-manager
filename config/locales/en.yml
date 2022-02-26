@@ -33,6 +33,16 @@ en:
       match:
         home_score: Score (home)
         away_score: Score (away)
+        status: Status
+  enums:
+    match:
+      status:
+        not_started: Not Started
+        in_progress: In Progress
+        halftime: Halftime
+        complete: Complete
+        stopped: Stopped
+        postponed: Postponed
   pages:
     matches:
       edit:

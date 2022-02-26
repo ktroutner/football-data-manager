@@ -13,6 +13,13 @@
     <% @fixture.matches.order(:kickoff_at).each do |match| %>
         <li>
             <%= link_to "#{match.home_team.short_name} v. #{match.away_team.short_name}", match_path(match) %>
+            <% if match.score_displayable? %>
+                <%= " #{match.home_score} - #{match.away_score}" %>
+            <% elsif match.status_postponed? %>
+                <%= " #{match.status_i18n}" %>
+            <% else %>
+                <%= I18n.l(match.kickoff_at, format: :with_day_of_week) %>
+            <% end %>
         </li>
     <% end %>
 </ul>
