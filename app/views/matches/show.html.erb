@@ -9,8 +9,20 @@
   <%= link_to @match.competition.name, competition_path(@match.competition) %>
   <%= " > #{@match.home_team.short_name} v. #{@match.away_team.short_name}" %>
 </div>
-<p><%= "#{@match.home_team.name} #{@match.display_score} #{@match.away_team.name}" %></p>
-<p><%= I18n.l(@match.kickoff_at, format: :with_day_of_week) %></p>
+<p>
+  <% if @match.score_displayable? %>
+    <%= "#{@match.home_team.name} #{@match.home_score} - #{@match.away_score} #{@match.away_team.name}" %>
+  <% else %>
+    <%= "#{@match.home_team.name} v. #{@match.away_team.name}" %>
+  <% end %>
+</p>
+<p>
+  <% if @match.status_postponed? %>
+    <%= @match.status_i18n %>
+  <% else %>
+    <%= I18n.l(@match.kickoff_at, format: :with_day_of_week) %>
+  <% end %>
+</p>
 <p><%= @match.venue.name %></p>
 
 <%= button_to I18n.t('actions.edit'), "/matches/#{@match.id}/edit", method: :get %>
