@@ -51,7 +51,13 @@ class Competition < ApplicationRecord
     "#{start_year} - #{end_year}"
   end
 
+  def complete?
+    matches.status_complete.count == matches.count
+  end
+
   def winner
+    return nil unless complete?
+
     stages.order(:order).last.winner
   end
 
