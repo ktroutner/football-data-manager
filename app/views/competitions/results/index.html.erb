@@ -9,7 +9,9 @@
   <%= link_to @competition.name, competition_path(@competition) %>
   <%= " > #{I18n.t('pages.results.title')}" %>
 <div>
-<p> <%= @winner.name %> 優勝おめでとうございます！</p>
+<% if @winner.present? %>
+    <p> <%= @winner.name %> 優勝おめでとうございます！</p>
+<% end %>
 <ul>
     <% @competition.stages.each do |stage| %>
         <li>
